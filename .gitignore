@@ -1,2 +1,13 @@
 .idea/*
-
+*.pyc
+__pycache__/*
+*.pyo
+.*swp
+.*swo
+.~lock*
+.*sw*
+*~
+cscope*
+*.log*
+*.sublime-project
+*.sublime-workspace
