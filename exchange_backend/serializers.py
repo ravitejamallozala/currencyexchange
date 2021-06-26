@@ -1,49 +1,51 @@
 from django.contrib.auth.models import Group
 from drf_extra_fields.relations import PresentablePrimaryKeyRelatedField
 from rest_framework import serializers
-from models import *
+from exchange_backend import models
 
 
-class CurrencySerializer(serializers.Serializer):
+class CurrencySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Currency
+        model = models.Currency
         fields = "__all__"
 
 
-class LoginSerializer(serializers.Serializer):
+class LoginSerializer(serializers.ModelSerializer):
     username = serializers.CharField()
     password = serializers.CharField()
 
 
-class WalletSerializer(serializers.Serializer):
+class WalletSerializer(serializers.ModelSerializer):
+    currency = CurrencySerializer(read_only=True)
+
     class Meta:
-        model = Wallet
+        model = models.Wallet
         fields = "__all__"
 
 
-class GroupSerializerlite(serializers.Serializer):
+class GroupSerializerlite(serializers.ModelSerializer):
     class Meta:
         model = Group
         exclude = ("permissions",)
 
 
-class UserSerializer(serializers.Serializer):
+class UserSerializer(serializers.ModelSerializer):
     groups = PresentablePrimaryKeyRelatedField(
         queryset=Group.objects.all(),
         presentation_serializer=GroupSerializerlite,
         many=True,
     )
-    wallet = Wallet(read_only=True)
+    wallet = WalletSerializer(read_only=True)
     wallet_id = serializers.PrimaryKeyRelatedField(
-        queryset=Wallet.objects.all(), write_only=True, source="wallet",
+        queryset=models.Wallet.objects.all(), write_only=True, source="wallet",
     )
-    currency = Currency(read_only=True)
+    currency = CurrencySerializer(read_only=True)
     currency_id = serializers.PrimaryKeyRelatedField(
-        queryset=Currency.objects.all(), write_only=True, source="currency",
+        queryset=models.Currency.objects.all(), write_only=True, source="currency",
     )
 
     class Meta:
-        model = User
+        model = models.User
         exclude = (
             "is_staff",
             "user_permissions",
@@ -58,7 +60,7 @@ class UserSerializer(serializers.Serializer):
         }
 
 
-class TransactionSerializer(serializers.Serializer):
+class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Transaction
+        model = models.Transaction
         fields = "__all__"

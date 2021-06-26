@@ -1,30 +1,62 @@
 import django
 from django.core.validators import FileExtensionValidator
-from django.db import models
+from django.db import models, transaction
 from django.contrib.auth import models as auth_models
-from models_common import NAME_LENGTH
+
+from models_common import NAME_LENGTH, ExchangeBaseModel
 from model_utils import Choices
+from django.db.models.signals import post_save
 
 
-class Currency(models.Model):
+class Currency(ExchangeBaseModel):
     name = models.CharField(max_length=NAME_LENGTH)
 
+    def __str__(self):
+        return self.name
 
-class Wallet(models.Model):
+
+class Wallet(ExchangeBaseModel):
     current_balance = models.FloatField(default=0.0)
     currency_type = models.ForeignKey(Currency)
 
 
 class User(auth_models.AbstractUser):
-    wallet = models.OneToOneField(Wallet, related_name="user_wallet")
-    default_currency = models.ForeignKey(Currency)
+    wallet = models.OneToOneField(Wallet, related_name="user_wallet", blank=True, null=True)
+    default_currency = models.ForeignKey(Currency, blank=True, null=True)
     profile_image = models.FileField(
         upload_to="profile_images/",
         validators=[FileExtensionValidator(allowed_extensions=["jpeg", 'jpg', 'png'])],
     )
 
+    @staticmethod
+    def create_default_values(instance):
+        from exchange_backend.serializers import WalletSerializer
+        if not instance.default_currency:
+            currency_obj = Currency.objects.get_or_create(name="INR")[0]
+            instance.default_currency = currency_obj
+        else:
+            currency_obj = instance.default_currency
+        wser = WalletSerializer(
+            data={
+                "current_balance": 0.0,
+                "currency_type": currency_obj.id,
+            }
+        )
+        wser.is_valid(raise_exception=True)
+        w_obj = wser.save()
+        instance.wallet = w_obj
+        instance.save()
 
-class Transaction(models.Model):
+    @classmethod
+    def post_save(cls, sender, instance, created, *args, **kwargs):
+        if created:
+            transaction.on_commit(lambda: cls.create_default_values(instance))
+
+
+models.signals.post_save.connect(User.post_save, sender=User)
+
+
+class Transaction(ExchangeBaseModel):
     TRANSACTION_TYPE_CHOICES = Choices(("debit", "debit"), ("credit", "credit"), ("transfer", "transfer"))
     STATUS_CHOICES = Choices(("accepted", "accepted"), ("declined", "declined"))
 
