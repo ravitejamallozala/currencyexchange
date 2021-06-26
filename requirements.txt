@@ -1,0 +1,4 @@
+Django==1.11.17
+djangorestframework==3.6.4
+uWSGI==2.0.17.1
+# psycopg2==2.8.4
