@@ -2,6 +2,7 @@ import django
 from django.core.validators import FileExtensionValidator
 from django.db import models, transaction
 from django.contrib.auth import models as auth_models
+
 from models_common import NAME_LENGTH, ExchangeBaseModel
 from model_utils import Choices
 from django.db.models.signals import post_save
@@ -9,6 +10,9 @@ from django.db.models.signals import post_save
 
 class Currency(ExchangeBaseModel):
     name = models.CharField(max_length=NAME_LENGTH)
+
+    def __str__(self):
+        return self.name
 
 
 class Wallet(ExchangeBaseModel):
@@ -26,8 +30,22 @@ class User(auth_models.AbstractUser):
 
     @staticmethod
     def create_default_values(instance):
-        print(instance)
-        pass
+        from exchange_backend.serializers import WalletSerializer
+        if not instance.default_currency:
+            currency_obj = Currency.objects.get_or_create(name="INR")[0]
+            instance.default_currency = currency_obj
+        else:
+            currency_obj = instance.default_currency
+        wser = WalletSerializer(
+            data={
+                "current_balance": 0.0,
+                "currency_type": currency_obj.id,
+            }
+        )
+        wser.is_valid(raise_exception=True)
+        w_obj = wser.save()
+        instance.wallet = w_obj
+        instance.save()
 
     @classmethod
     def post_save(cls, sender, instance, created, *args, **kwargs):

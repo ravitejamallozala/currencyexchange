@@ -1,0 +1,1514 @@
+[
+  {
+    "model": "exchange_backend.currency",
+    "pk": 169,
+    "fields": {
+      "created": "2021-06-26T11:55:53.130Z",
+      "modified": "2021-06-26T11:55:53.130Z",
+      "name": "INR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 170,
+    "fields": {
+      "created": "2021-06-26T12:15:02.830Z",
+      "modified": "2021-06-26T12:15:02.830Z",
+      "name": "AED"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 171,
+    "fields": {
+      "created": "2021-06-26T12:15:02.844Z",
+      "modified": "2021-06-26T12:15:02.844Z",
+      "name": "AFN"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 172,
+    "fields": {
+      "created": "2021-06-26T12:15:02.855Z",
+      "modified": "2021-06-26T12:15:02.855Z",
+      "name": "ALL"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 173,
+    "fields": {
+      "created": "2021-06-26T12:15:02.864Z",
+      "modified": "2021-06-26T12:15:02.864Z",
+      "name": "AMD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 174,
+    "fields": {
+      "created": "2021-06-26T12:15:02.873Z",
+      "modified": "2021-06-26T12:15:02.873Z",
+      "name": "ANG"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 175,
+    "fields": {
+      "created": "2021-06-26T12:15:02.882Z",
+      "modified": "2021-06-26T12:15:02.882Z",
+      "name": "AOA"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 176,
+    "fields": {
+      "created": "2021-06-26T12:15:02.891Z",
+      "modified": "2021-06-26T12:15:02.891Z",
+      "name": "ARS"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 177,
+    "fields": {
+      "created": "2021-06-26T12:15:02.902Z",
+      "modified": "2021-06-26T12:15:02.902Z",
+      "name": "AUD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 178,
+    "fields": {
+      "created": "2021-06-26T12:15:02.912Z",
+      "modified": "2021-06-26T12:15:02.912Z",
+      "name": "AWG"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 179,
+    "fields": {
+      "created": "2021-06-26T12:15:02.921Z",
+      "modified": "2021-06-26T12:15:02.921Z",
+      "name": "AZN"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 180,
+    "fields": {
+      "created": "2021-06-26T12:15:02.929Z",
+      "modified": "2021-06-26T12:15:02.929Z",
+      "name": "BAM"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 181,
+    "fields": {
+      "created": "2021-06-26T12:15:02.938Z",
+      "modified": "2021-06-26T12:15:02.938Z",
+      "name": "BBD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 182,
+    "fields": {
+      "created": "2021-06-26T12:15:02.946Z",
+      "modified": "2021-06-26T12:15:02.946Z",
+      "name": "BDT"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 183,
+    "fields": {
+      "created": "2021-06-26T12:15:02.954Z",
+      "modified": "2021-06-26T12:15:02.954Z",
+      "name": "BGN"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 184,
+    "fields": {
+      "created": "2021-06-26T12:15:02.963Z",
+      "modified": "2021-06-26T12:15:02.963Z",
+      "name": "BHD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 185,
+    "fields": {
+      "created": "2021-06-26T12:15:02.972Z",
+      "modified": "2021-06-26T12:15:02.972Z",
+      "name": "BIF"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 186,
+    "fields": {
+      "created": "2021-06-26T12:15:02.981Z",
+      "modified": "2021-06-26T12:15:02.981Z",
+      "name": "BMD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 187,
+    "fields": {
+      "created": "2021-06-26T12:15:02.993Z",
+      "modified": "2021-06-26T12:15:02.993Z",
+      "name": "BND"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 188,
+    "fields": {
+      "created": "2021-06-26T12:15:03.004Z",
+      "modified": "2021-06-26T12:15:03.004Z",
+      "name": "BOB"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 189,
+    "fields": {
+      "created": "2021-06-26T12:15:03.013Z",
+      "modified": "2021-06-26T12:15:03.013Z",
+      "name": "BRL"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 190,
+    "fields": {
+      "created": "2021-06-26T12:15:03.023Z",
+      "modified": "2021-06-26T12:15:03.023Z",
+      "name": "BSD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 191,
+    "fields": {
+      "created": "2021-06-26T12:15:03.033Z",
+      "modified": "2021-06-26T12:15:03.033Z",
+      "name": "BTC"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 192,
+    "fields": {
+      "created": "2021-06-26T12:15:03.041Z",
+      "modified": "2021-06-26T12:15:03.041Z",
+      "name": "BTN"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 193,
+    "fields": {
+      "created": "2021-06-26T12:15:03.049Z",
+      "modified": "2021-06-26T12:15:03.049Z",
+      "name": "BWP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 194,
+    "fields": {
+      "created": "2021-06-26T12:15:03.059Z",
+      "modified": "2021-06-26T12:15:03.059Z",
+      "name": "BYN"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 195,
+    "fields": {
+      "created": "2021-06-26T12:15:03.068Z",
+      "modified": "2021-06-26T12:15:03.068Z",
+      "name": "BYR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 196,
+    "fields": {
+      "created": "2021-06-26T12:15:03.075Z",
+      "modified": "2021-06-26T12:15:03.075Z",
+      "name": "BZD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 197,
+    "fields": {
+      "created": "2021-06-26T12:15:03.082Z",
+      "modified": "2021-06-26T12:15:03.082Z",
+      "name": "CAD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 198,
+    "fields": {
+      "created": "2021-06-26T12:15:03.088Z",
+      "modified": "2021-06-26T12:15:03.088Z",
+      "name": "CDF"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 199,
+    "fields": {
+      "created": "2021-06-26T12:15:03.095Z",
+      "modified": "2021-06-26T12:15:03.095Z",
+      "name": "CHF"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 200,
+    "fields": {
+      "created": "2021-06-26T12:15:03.103Z",
+      "modified": "2021-06-26T12:15:03.103Z",
+      "name": "CLF"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 201,
+    "fields": {
+      "created": "2021-06-26T12:15:03.110Z",
+      "modified": "2021-06-26T12:15:03.110Z",
+      "name": "CLP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 202,
+    "fields": {
+      "created": "2021-06-26T12:15:03.118Z",
+      "modified": "2021-06-26T12:15:03.118Z",
+      "name": "CNY"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 203,
+    "fields": {
+      "created": "2021-06-26T12:15:03.126Z",
+      "modified": "2021-06-26T12:15:03.126Z",
+      "name": "COP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 204,
+    "fields": {
+      "created": "2021-06-26T12:15:03.134Z",
+      "modified": "2021-06-26T12:15:03.134Z",
+      "name": "CRC"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 205,
+    "fields": {
+      "created": "2021-06-26T12:15:03.141Z",
+      "modified": "2021-06-26T12:15:03.141Z",
+      "name": "CUC"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 206,
+    "fields": {
+      "created": "2021-06-26T12:15:03.148Z",
+      "modified": "2021-06-26T12:15:03.148Z",
+      "name": "CUP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 207,
+    "fields": {
+      "created": "2021-06-26T12:15:03.155Z",
+      "modified": "2021-06-26T12:15:03.155Z",
+      "name": "CVE"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 208,
+    "fields": {
+      "created": "2021-06-26T12:15:03.162Z",
+      "modified": "2021-06-26T12:15:03.162Z",
+      "name": "CZK"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 209,
+    "fields": {
+      "created": "2021-06-26T12:15:03.169Z",
+      "modified": "2021-06-26T12:15:03.169Z",
+      "name": "DJF"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 210,
+    "fields": {
+      "created": "2021-06-26T12:15:03.176Z",
+      "modified": "2021-06-26T12:15:03.176Z",
+      "name": "DKK"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 211,
+    "fields": {
+      "created": "2021-06-26T12:15:03.184Z",
+      "modified": "2021-06-26T12:15:03.184Z",
+      "name": "DOP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 212,
+    "fields": {
+      "created": "2021-06-26T12:15:03.191Z",
+      "modified": "2021-06-26T12:15:03.191Z",
+      "name": "DZD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 213,
+    "fields": {
+      "created": "2021-06-26T12:15:03.200Z",
+      "modified": "2021-06-26T12:15:03.200Z",
+      "name": "EGP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 214,
+    "fields": {
+      "created": "2021-06-26T12:15:03.209Z",
+      "modified": "2021-06-26T12:15:03.209Z",
+      "name": "ERN"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 215,
+    "fields": {
+      "created": "2021-06-26T12:15:03.218Z",
+      "modified": "2021-06-26T12:15:03.218Z",
+      "name": "ETB"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 216,
+    "fields": {
+      "created": "2021-06-26T12:15:03.227Z",
+      "modified": "2021-06-26T12:15:03.227Z",
+      "name": "EUR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 217,
+    "fields": {
+      "created": "2021-06-26T12:15:03.237Z",
+      "modified": "2021-06-26T12:15:03.237Z",
+      "name": "FJD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 218,
+    "fields": {
+      "created": "2021-06-26T12:15:03.246Z",
+      "modified": "2021-06-26T12:15:03.246Z",
+      "name": "FKP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 219,
+    "fields": {
+      "created": "2021-06-26T12:15:03.254Z",
+      "modified": "2021-06-26T12:15:03.254Z",
+      "name": "GBP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 220,
+    "fields": {
+      "created": "2021-06-26T12:15:03.262Z",
+      "modified": "2021-06-26T12:15:03.262Z",
+      "name": "GEL"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 221,
+    "fields": {
+      "created": "2021-06-26T12:15:03.269Z",
+      "modified": "2021-06-26T12:15:03.269Z",
+      "name": "GGP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 222,
+    "fields": {
+      "created": "2021-06-26T12:15:03.277Z",
+      "modified": "2021-06-26T12:15:03.277Z",
+      "name": "GHS"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 223,
+    "fields": {
+      "created": "2021-06-26T12:15:03.286Z",
+      "modified": "2021-06-26T12:15:03.286Z",
+      "name": "GIP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 224,
+    "fields": {
+      "created": "2021-06-26T12:15:03.295Z",
+      "modified": "2021-06-26T12:15:03.295Z",
+      "name": "GMD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 225,
+    "fields": {
+      "created": "2021-06-26T12:15:03.304Z",
+      "modified": "2021-06-26T12:15:03.304Z",
+      "name": "GNF"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 226,
+    "fields": {
+      "created": "2021-06-26T12:15:03.313Z",
+      "modified": "2021-06-26T12:15:03.313Z",
+      "name": "GTQ"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 227,
+    "fields": {
+      "created": "2021-06-26T12:15:03.321Z",
+      "modified": "2021-06-26T12:15:03.321Z",
+      "name": "GYD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 228,
+    "fields": {
+      "created": "2021-06-26T12:15:03.328Z",
+      "modified": "2021-06-26T12:15:03.328Z",
+      "name": "HKD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 229,
+    "fields": {
+      "created": "2021-06-26T12:15:03.335Z",
+      "modified": "2021-06-26T12:15:03.335Z",
+      "name": "HNL"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 230,
+    "fields": {
+      "created": "2021-06-26T12:15:03.341Z",
+      "modified": "2021-06-26T12:15:03.341Z",
+      "name": "HRK"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 231,
+    "fields": {
+      "created": "2021-06-26T12:15:03.351Z",
+      "modified": "2021-06-26T12:15:03.351Z",
+      "name": "HTG"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 232,
+    "fields": {
+      "created": "2021-06-26T12:15:03.361Z",
+      "modified": "2021-06-26T12:15:03.361Z",
+      "name": "HUF"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 233,
+    "fields": {
+      "created": "2021-06-26T12:15:03.370Z",
+      "modified": "2021-06-26T12:15:03.370Z",
+      "name": "IDR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 234,
+    "fields": {
+      "created": "2021-06-26T12:15:03.379Z",
+      "modified": "2021-06-26T12:15:03.379Z",
+      "name": "ILS"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 235,
+    "fields": {
+      "created": "2021-06-26T12:15:03.388Z",
+      "modified": "2021-06-26T12:15:03.388Z",
+      "name": "IMP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 236,
+    "fields": {
+      "created": "2021-06-26T12:15:03.399Z",
+      "modified": "2021-06-26T12:15:03.399Z",
+      "name": "IQD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 237,
+    "fields": {
+      "created": "2021-06-26T12:15:03.405Z",
+      "modified": "2021-06-26T12:15:03.405Z",
+      "name": "IRR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 238,
+    "fields": {
+      "created": "2021-06-26T12:15:03.412Z",
+      "modified": "2021-06-26T12:15:03.412Z",
+      "name": "ISK"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 239,
+    "fields": {
+      "created": "2021-06-26T12:15:03.419Z",
+      "modified": "2021-06-26T12:15:03.419Z",
+      "name": "JEP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 240,
+    "fields": {
+      "created": "2021-06-26T12:15:03.425Z",
+      "modified": "2021-06-26T12:15:03.425Z",
+      "name": "JMD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 241,
+    "fields": {
+      "created": "2021-06-26T12:15:03.435Z",
+      "modified": "2021-06-26T12:15:03.435Z",
+      "name": "JOD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 242,
+    "fields": {
+      "created": "2021-06-26T12:15:03.445Z",
+      "modified": "2021-06-26T12:15:03.445Z",
+      "name": "JPY"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 243,
+    "fields": {
+      "created": "2021-06-26T12:15:03.454Z",
+      "modified": "2021-06-26T12:15:03.454Z",
+      "name": "KES"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 244,
+    "fields": {
+      "created": "2021-06-26T12:15:03.462Z",
+      "modified": "2021-06-26T12:15:03.462Z",
+      "name": "KGS"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 245,
+    "fields": {
+      "created": "2021-06-26T12:15:03.470Z",
+      "modified": "2021-06-26T12:15:03.470Z",
+      "name": "KHR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 246,
+    "fields": {
+      "created": "2021-06-26T12:15:03.478Z",
+      "modified": "2021-06-26T12:15:03.478Z",
+      "name": "KMF"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 247,
+    "fields": {
+      "created": "2021-06-26T12:15:03.486Z",
+      "modified": "2021-06-26T12:15:03.486Z",
+      "name": "KPW"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 248,
+    "fields": {
+      "created": "2021-06-26T12:15:03.494Z",
+      "modified": "2021-06-26T12:15:03.494Z",
+      "name": "KRW"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 249,
+    "fields": {
+      "created": "2021-06-26T12:15:03.502Z",
+      "modified": "2021-06-26T12:15:03.502Z",
+      "name": "KWD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 250,
+    "fields": {
+      "created": "2021-06-26T12:15:03.509Z",
+      "modified": "2021-06-26T12:15:03.509Z",
+      "name": "KYD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 251,
+    "fields": {
+      "created": "2021-06-26T12:15:03.516Z",
+      "modified": "2021-06-26T12:15:03.516Z",
+      "name": "KZT"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 252,
+    "fields": {
+      "created": "2021-06-26T12:15:03.522Z",
+      "modified": "2021-06-26T12:15:03.522Z",
+      "name": "LAK"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 253,
+    "fields": {
+      "created": "2021-06-26T12:15:03.530Z",
+      "modified": "2021-06-26T12:15:03.530Z",
+      "name": "LBP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 254,
+    "fields": {
+      "created": "2021-06-26T12:15:03.538Z",
+      "modified": "2021-06-26T12:15:03.538Z",
+      "name": "LKR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 255,
+    "fields": {
+      "created": "2021-06-26T12:15:03.546Z",
+      "modified": "2021-06-26T12:15:03.546Z",
+      "name": "LRD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 256,
+    "fields": {
+      "created": "2021-06-26T12:15:03.554Z",
+      "modified": "2021-06-26T12:15:03.554Z",
+      "name": "LSL"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 257,
+    "fields": {
+      "created": "2021-06-26T12:15:03.563Z",
+      "modified": "2021-06-26T12:15:03.563Z",
+      "name": "LTL"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 258,
+    "fields": {
+      "created": "2021-06-26T12:15:03.570Z",
+      "modified": "2021-06-26T12:15:03.570Z",
+      "name": "LVL"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 259,
+    "fields": {
+      "created": "2021-06-26T12:15:03.578Z",
+      "modified": "2021-06-26T12:15:03.578Z",
+      "name": "LYD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 260,
+    "fields": {
+      "created": "2021-06-26T12:15:03.585Z",
+      "modified": "2021-06-26T12:15:03.585Z",
+      "name": "MAD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 261,
+    "fields": {
+      "created": "2021-06-26T12:15:03.591Z",
+      "modified": "2021-06-26T12:15:03.591Z",
+      "name": "MDL"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 262,
+    "fields": {
+      "created": "2021-06-26T12:15:03.597Z",
+      "modified": "2021-06-26T12:15:03.597Z",
+      "name": "MGA"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 263,
+    "fields": {
+      "created": "2021-06-26T12:15:03.603Z",
+      "modified": "2021-06-26T12:15:03.603Z",
+      "name": "MKD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 264,
+    "fields": {
+      "created": "2021-06-26T12:15:03.609Z",
+      "modified": "2021-06-26T12:15:03.609Z",
+      "name": "MMK"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 265,
+    "fields": {
+      "created": "2021-06-26T12:15:03.617Z",
+      "modified": "2021-06-26T12:15:03.617Z",
+      "name": "MNT"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 266,
+    "fields": {
+      "created": "2021-06-26T12:15:03.625Z",
+      "modified": "2021-06-26T12:15:03.625Z",
+      "name": "MOP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 267,
+    "fields": {
+      "created": "2021-06-26T12:15:03.635Z",
+      "modified": "2021-06-26T12:15:03.635Z",
+      "name": "MRO"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 268,
+    "fields": {
+      "created": "2021-06-26T12:15:03.644Z",
+      "modified": "2021-06-26T12:15:03.644Z",
+      "name": "MUR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 269,
+    "fields": {
+      "created": "2021-06-26T12:15:03.653Z",
+      "modified": "2021-06-26T12:15:03.653Z",
+      "name": "MVR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 270,
+    "fields": {
+      "created": "2021-06-26T12:15:03.661Z",
+      "modified": "2021-06-26T12:15:03.661Z",
+      "name": "MWK"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 271,
+    "fields": {
+      "created": "2021-06-26T12:15:03.669Z",
+      "modified": "2021-06-26T12:15:03.669Z",
+      "name": "MXN"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 272,
+    "fields": {
+      "created": "2021-06-26T12:15:03.676Z",
+      "modified": "2021-06-26T12:15:03.676Z",
+      "name": "MYR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 273,
+    "fields": {
+      "created": "2021-06-26T12:15:03.684Z",
+      "modified": "2021-06-26T12:15:03.684Z",
+      "name": "MZN"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 274,
+    "fields": {
+      "created": "2021-06-26T12:15:03.693Z",
+      "modified": "2021-06-26T12:15:03.693Z",
+      "name": "NAD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 275,
+    "fields": {
+      "created": "2021-06-26T12:15:03.702Z",
+      "modified": "2021-06-26T12:15:03.702Z",
+      "name": "NGN"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 276,
+    "fields": {
+      "created": "2021-06-26T12:15:03.710Z",
+      "modified": "2021-06-26T12:15:03.710Z",
+      "name": "NIO"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 277,
+    "fields": {
+      "created": "2021-06-26T12:15:03.719Z",
+      "modified": "2021-06-26T12:15:03.719Z",
+      "name": "NOK"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 278,
+    "fields": {
+      "created": "2021-06-26T12:15:03.727Z",
+      "modified": "2021-06-26T12:15:03.727Z",
+      "name": "NPR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 279,
+    "fields": {
+      "created": "2021-06-26T12:15:03.735Z",
+      "modified": "2021-06-26T12:15:03.735Z",
+      "name": "NZD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 280,
+    "fields": {
+      "created": "2021-06-26T12:15:03.744Z",
+      "modified": "2021-06-26T12:15:03.744Z",
+      "name": "OMR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 281,
+    "fields": {
+      "created": "2021-06-26T12:15:03.753Z",
+      "modified": "2021-06-26T12:15:03.753Z",
+      "name": "PAB"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 282,
+    "fields": {
+      "created": "2021-06-26T12:15:03.763Z",
+      "modified": "2021-06-26T12:15:03.763Z",
+      "name": "PEN"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 283,
+    "fields": {
+      "created": "2021-06-26T12:15:03.771Z",
+      "modified": "2021-06-26T12:15:03.771Z",
+      "name": "PGK"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 284,
+    "fields": {
+      "created": "2021-06-26T12:15:03.780Z",
+      "modified": "2021-06-26T12:15:03.780Z",
+      "name": "PHP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 285,
+    "fields": {
+      "created": "2021-06-26T12:15:03.790Z",
+      "modified": "2021-06-26T12:15:03.790Z",
+      "name": "PKR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 286,
+    "fields": {
+      "created": "2021-06-26T12:15:03.805Z",
+      "modified": "2021-06-26T12:15:03.805Z",
+      "name": "PLN"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 287,
+    "fields": {
+      "created": "2021-06-26T12:15:03.813Z",
+      "modified": "2021-06-26T12:15:03.813Z",
+      "name": "PYG"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 288,
+    "fields": {
+      "created": "2021-06-26T12:15:03.821Z",
+      "modified": "2021-06-26T12:15:03.821Z",
+      "name": "QAR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 289,
+    "fields": {
+      "created": "2021-06-26T12:15:03.829Z",
+      "modified": "2021-06-26T12:15:03.829Z",
+      "name": "RON"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 290,
+    "fields": {
+      "created": "2021-06-26T12:15:03.838Z",
+      "modified": "2021-06-26T12:15:03.838Z",
+      "name": "RSD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 291,
+    "fields": {
+      "created": "2021-06-26T12:15:03.848Z",
+      "modified": "2021-06-26T12:15:03.848Z",
+      "name": "RUB"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 292,
+    "fields": {
+      "created": "2021-06-26T12:15:03.857Z",
+      "modified": "2021-06-26T12:15:03.857Z",
+      "name": "RWF"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 293,
+    "fields": {
+      "created": "2021-06-26T12:15:03.869Z",
+      "modified": "2021-06-26T12:15:03.869Z",
+      "name": "SAR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 294,
+    "fields": {
+      "created": "2021-06-26T12:15:03.879Z",
+      "modified": "2021-06-26T12:15:03.879Z",
+      "name": "SBD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 295,
+    "fields": {
+      "created": "2021-06-26T12:15:03.889Z",
+      "modified": "2021-06-26T12:15:03.889Z",
+      "name": "SCR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 296,
+    "fields": {
+      "created": "2021-06-26T12:15:03.899Z",
+      "modified": "2021-06-26T12:15:03.899Z",
+      "name": "SDG"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 297,
+    "fields": {
+      "created": "2021-06-26T12:15:03.907Z",
+      "modified": "2021-06-26T12:15:03.907Z",
+      "name": "SEK"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 298,
+    "fields": {
+      "created": "2021-06-26T12:15:03.914Z",
+      "modified": "2021-06-26T12:15:03.914Z",
+      "name": "SGD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 299,
+    "fields": {
+      "created": "2021-06-26T12:15:03.921Z",
+      "modified": "2021-06-26T12:15:03.921Z",
+      "name": "SHP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 300,
+    "fields": {
+      "created": "2021-06-26T12:15:03.928Z",
+      "modified": "2021-06-26T12:15:03.928Z",
+      "name": "SLL"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 301,
+    "fields": {
+      "created": "2021-06-26T12:15:03.936Z",
+      "modified": "2021-06-26T12:15:03.936Z",
+      "name": "SOS"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 302,
+    "fields": {
+      "created": "2021-06-26T12:15:03.943Z",
+      "modified": "2021-06-26T12:15:03.943Z",
+      "name": "SRD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 303,
+    "fields": {
+      "created": "2021-06-26T12:15:03.950Z",
+      "modified": "2021-06-26T12:15:03.950Z",
+      "name": "STD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 304,
+    "fields": {
+      "created": "2021-06-26T12:15:03.958Z",
+      "modified": "2021-06-26T12:15:03.958Z",
+      "name": "SVC"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 305,
+    "fields": {
+      "created": "2021-06-26T12:15:03.969Z",
+      "modified": "2021-06-26T12:15:03.969Z",
+      "name": "SYP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 306,
+    "fields": {
+      "created": "2021-06-26T12:15:03.979Z",
+      "modified": "2021-06-26T12:15:03.979Z",
+      "name": "SZL"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 307,
+    "fields": {
+      "created": "2021-06-26T12:15:03.988Z",
+      "modified": "2021-06-26T12:15:03.988Z",
+      "name": "THB"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 308,
+    "fields": {
+      "created": "2021-06-26T12:15:03.998Z",
+      "modified": "2021-06-26T12:15:03.998Z",
+      "name": "TJS"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 309,
+    "fields": {
+      "created": "2021-06-26T12:15:04.006Z",
+      "modified": "2021-06-26T12:15:04.006Z",
+      "name": "TMT"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 310,
+    "fields": {
+      "created": "2021-06-26T12:15:04.015Z",
+      "modified": "2021-06-26T12:15:04.015Z",
+      "name": "TND"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 311,
+    "fields": {
+      "created": "2021-06-26T12:15:04.026Z",
+      "modified": "2021-06-26T12:15:04.026Z",
+      "name": "TOP"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 312,
+    "fields": {
+      "created": "2021-06-26T12:15:04.035Z",
+      "modified": "2021-06-26T12:15:04.035Z",
+      "name": "TRY"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 313,
+    "fields": {
+      "created": "2021-06-26T12:15:04.045Z",
+      "modified": "2021-06-26T12:15:04.045Z",
+      "name": "TTD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 314,
+    "fields": {
+      "created": "2021-06-26T12:15:04.054Z",
+      "modified": "2021-06-26T12:15:04.054Z",
+      "name": "TWD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 315,
+    "fields": {
+      "created": "2021-06-26T12:15:04.062Z",
+      "modified": "2021-06-26T12:15:04.062Z",
+      "name": "TZS"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 316,
+    "fields": {
+      "created": "2021-06-26T12:15:04.069Z",
+      "modified": "2021-06-26T12:15:04.069Z",
+      "name": "UAH"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 317,
+    "fields": {
+      "created": "2021-06-26T12:15:04.076Z",
+      "modified": "2021-06-26T12:15:04.076Z",
+      "name": "UGX"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 318,
+    "fields": {
+      "created": "2021-06-26T12:15:04.084Z",
+      "modified": "2021-06-26T12:15:04.084Z",
+      "name": "USD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 319,
+    "fields": {
+      "created": "2021-06-26T12:15:04.092Z",
+      "modified": "2021-06-26T12:15:04.092Z",
+      "name": "UYU"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 320,
+    "fields": {
+      "created": "2021-06-26T12:15:04.101Z",
+      "modified": "2021-06-26T12:15:04.101Z",
+      "name": "UZS"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 321,
+    "fields": {
+      "created": "2021-06-26T12:15:04.109Z",
+      "modified": "2021-06-26T12:15:04.109Z",
+      "name": "VEF"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 322,
+    "fields": {
+      "created": "2021-06-26T12:15:04.118Z",
+      "modified": "2021-06-26T12:15:04.118Z",
+      "name": "VND"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 323,
+    "fields": {
+      "created": "2021-06-26T12:15:04.129Z",
+      "modified": "2021-06-26T12:15:04.129Z",
+      "name": "VUV"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 324,
+    "fields": {
+      "created": "2021-06-26T12:15:04.139Z",
+      "modified": "2021-06-26T12:15:04.139Z",
+      "name": "WST"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 325,
+    "fields": {
+      "created": "2021-06-26T12:15:04.148Z",
+      "modified": "2021-06-26T12:15:04.148Z",
+      "name": "XAF"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 326,
+    "fields": {
+      "created": "2021-06-26T12:15:04.156Z",
+      "modified": "2021-06-26T12:15:04.156Z",
+      "name": "XAG"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 327,
+    "fields": {
+      "created": "2021-06-26T12:15:04.164Z",
+      "modified": "2021-06-26T12:15:04.164Z",
+      "name": "XAU"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 328,
+    "fields": {
+      "created": "2021-06-26T12:15:04.172Z",
+      "modified": "2021-06-26T12:15:04.172Z",
+      "name": "XCD"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 329,
+    "fields": {
+      "created": "2021-06-26T12:15:04.180Z",
+      "modified": "2021-06-26T12:15:04.180Z",
+      "name": "XDR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 330,
+    "fields": {
+      "created": "2021-06-26T12:15:04.189Z",
+      "modified": "2021-06-26T12:15:04.189Z",
+      "name": "XOF"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 331,
+    "fields": {
+      "created": "2021-06-26T12:15:04.200Z",
+      "modified": "2021-06-26T12:15:04.200Z",
+      "name": "XPF"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 332,
+    "fields": {
+      "created": "2021-06-26T12:15:04.210Z",
+      "modified": "2021-06-26T12:15:04.210Z",
+      "name": "YER"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 333,
+    "fields": {
+      "created": "2021-06-26T12:15:04.219Z",
+      "modified": "2021-06-26T12:15:04.219Z",
+      "name": "ZAR"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 334,
+    "fields": {
+      "created": "2021-06-26T12:15:04.227Z",
+      "modified": "2021-06-26T12:15:04.227Z",
+      "name": "ZMK"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 335,
+    "fields": {
+      "created": "2021-06-26T12:15:04.236Z",
+      "modified": "2021-06-26T12:15:04.236Z",
+      "name": "ZMW"
+    }
+  },
+  {
+    "model": "exchange_backend.currency",
+    "pk": 336,
+    "fields": {
+      "created": "2021-06-26T12:15:04.245Z",
+      "modified": "2021-06-26T12:15:04.245Z",
+      "name": "ZWL"
+    }
+  }
+]
