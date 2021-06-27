@@ -11,3 +11,4 @@ cscope*
 *.log*
 *.sublime-project
 *.sublime-workspace
+deployment_static/*
