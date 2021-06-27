@@ -1,5 +1,6 @@
 from django.contrib.auth import authenticate, login, logout, REDIRECT_FIELD_NAME
 from django.shortcuts import render
+from django.views.generic.base import TemplateResponseMixin, View
 from rest_framework.decorators import list_route, authentication_classes, permission_classes
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import AllowAny
@@ -16,10 +17,24 @@ from views_common import *
 from .models import Currency, Wallet, Transaction, User
 
 
-class RegisterView(CreateAPIView):
+class RegisterView(CreateAPIView, TemplateResponseMixin):
+    template_name = "register.html"
+
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = RegisterSerializer
+
+    def get(self, request):
+        return self.render_to_response({})
+
+
+class ServeFrontend(View, TemplateResponseMixin):
+    # TODO roman add permission
+    template_name = "base.html"
+    permission_classes = [IsAuthenticatedOrOptions]
+
+    def get(self, request):
+        return self.render_to_response({})
 
 
 @authentication_classes([])

@@ -139,10 +139,10 @@ LOGOUT_URL = "/logout/"
 LOGIN_REDIRECT_URL = "/"
 
 STATIC_ROOT = os.path.join(PROJECT_PATH, "deployment_static")
-# STATICFILES_DIRS = [
-#     os.path.join(PROJECT_PATH, "frontend", "build", "static"),
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
 #     os.path.join(PROJECT_PATH, "frontend", "build"),
-# ]
+]
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 SESSION_COOKIE_NAME = "sessionid"
