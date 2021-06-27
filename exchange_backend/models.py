@@ -20,13 +20,16 @@ class Wallet(ExchangeBaseModel):
     currency_type = models.ForeignKey(Currency)
 
 
-class User(auth_models.AbstractUser):
+class User(auth_models.AbstractUser, ExchangeBaseModel):
     wallet = models.OneToOneField(Wallet, related_name="user_wallet", blank=True, null=True)
     default_currency = models.ForeignKey(Currency, blank=True, null=True)
     profile_image = models.FileField(
         upload_to="profile_images/",
-        validators=[FileExtensionValidator(allowed_extensions=["jpeg", 'jpg', 'png'])],
+        validators=[FileExtensionValidator(allowed_extensions=["jpeg", 'jpg', 'png'])], blank=True, null=True
     )
+
+    class Meta:
+        fetch_old_instance = True
 
     @staticmethod
     def create_default_values(instance):
@@ -49,6 +52,17 @@ class User(auth_models.AbstractUser):
 
     @classmethod
     def post_save(cls, sender, instance, created, *args, **kwargs):
+        from exchange_backend.views import ExchangeService
+        old_instance = instance.old_instance
+        print(old_instance)
+        if old_instance.default_currency != instance.default_currency:
+            wallet_obj = instance.wallet
+            converted_value = ExchangeService.convert_currency(old_instance.default_currency.name,
+                                                               instance.default_currency.name,
+                                                               wallet_obj.current_balance)
+            wallet_obj.current_balance = converted_value
+            wallet_obj.currency_type = instance.default_currency
+            wallet_obj.save()
         if created:
             transaction.on_commit(lambda: cls.create_default_values(instance))
 
