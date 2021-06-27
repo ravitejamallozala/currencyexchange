@@ -1,14 +1,72 @@
+from django.contrib.auth import authenticate, login, logout, REDIRECT_FIELD_NAME
 from django.shortcuts import render
-from rest_framework.decorators import list_route
+from rest_framework.decorators import list_route, authentication_classes, permission_classes
 from rest_framework.exceptions import ValidationError
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from django.http import HttpResponseRedirect, HttpResponse
-from rest_framework.generics import get_object_or_404
+from rest_framework.generics import get_object_or_404, CreateAPIView
 import requests
+from rest_framework.views import APIView
+
 from exchange_backend import filters
+from misc import IsAuthenticatedOrOptions
 from .serializers import *
 from views_common import *
 from .models import Currency, Wallet, Transaction, User
+
+
+class RegisterView(CreateAPIView):
+    queryset = User.objects.all()
+    permission_classes = (AllowAny,)
+    serializer_class = RegisterSerializer
+
+
+@authentication_classes([])
+@permission_classes([])
+class LoginView(APIView):
+    redirect_field_name = REDIRECT_FIELD_NAME
+
+    def post(self, request):
+        redirect_to = request.POST.get(
+            self.redirect_field_name, request.GET.get(self.redirect_field_name, ""),
+        )
+
+        serializer = LoginSerializer(data=request.data)
+        if serializer.is_valid():
+            user = authenticate(
+                username=serializer.validated_data["username"].lower(),
+                password=serializer.validated_data["password"],
+            )
+            if not user:
+                return Response(
+                    status=401, data={"error": True, "authentication": False},
+                )
+            login(request, user)
+            final_response = HttpResponseRedirect(redirect_to)
+            return final_response
+        return Response(status=401, data={"error": True, "authentication": False})
+
+
+class LogoutView(APIView):
+    redirect_field_name = REDIRECT_FIELD_NAME
+    permission_classes = (IsAuthenticatedOrOptions,)
+
+    def get(self, request):
+        redirect_to = request.POST.get(
+            self.redirect_field_name, request.GET.get(self.redirect_field_name, ""),
+        )
+        final_response = HttpResponseRedirect(redirect_to)
+        logout(request)
+        return final_response
+
+    def post(self, request):
+        redirect_to = request.POST.get(
+            self.redirect_field_name, request.GET.get(self.redirect_field_name, ""),
+        )
+        final_response = HttpResponseRedirect(redirect_to)
+        logout(request)
+        return final_response
 
 
 class CurrencyViewset(ExchangeModelViewSet):

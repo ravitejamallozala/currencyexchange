@@ -60,6 +60,7 @@ ROOT_URLCONF = 'urls'
 REST_FRAMEWORK = {
     "PAGE_SIZE": 100,
     "DEFAULT_AUTHENTICATION_CLASSES": (
+        "auth.CustomSessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": (
@@ -144,6 +145,6 @@ STATIC_ROOT = os.path.join(PROJECT_PATH, "deployment_static")
 # ]
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
+SESSION_COOKIE_NAME = "sessionid"
 EXCHANGE_API = {}
 from local_settings import *  # noqa

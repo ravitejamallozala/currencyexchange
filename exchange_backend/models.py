@@ -58,6 +58,8 @@ class User(auth_models.AbstractUser, ExchangeBaseModel):
             from exchange_backend.views import ExchangeService
             old_instance = instance.old_instance
             print(old_instance)
+            if not old_instance:
+                return
             if old_instance.default_currency != instance.default_currency:
                 wallet_obj = instance.wallet
                 converted_value = ExchangeService.convert_currency(old_instance.default_currency.name,
