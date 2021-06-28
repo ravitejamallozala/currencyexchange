@@ -13,7 +13,7 @@ urlpatterns = [
     url("^api/", include(router.urls)),
     url(r"^login/$", views.LoginView.as_view(), name="login"),
     url(r"^logout/$", views.LogoutView.as_view(), name="logout"),
-    url('register/', RegisterView.as_view(), name='register'),
+    url(r"^register/$", RegisterView.as_view(), name='register'),
     url(r"^.+/", views.ServeFrontend.as_view(), name="serve_frontend"),
     url(r"^$", views.ServeFrontend.as_view(), name="serve_frontend"),
 ]

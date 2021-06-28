@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout, REDIRECT_FIELD_NAME
 from django.shortcuts import render
-from django.views.generic.base import TemplateResponseMixin, View
+from django.views.generic.base import TemplateResponseMixin, View, TemplateView
 from rest_framework.decorators import list_route, authentication_classes, permission_classes
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import AllowAny
@@ -18,14 +18,21 @@ from .models import Currency, Wallet, Transaction, User
 
 
 class RegisterView(CreateAPIView, TemplateResponseMixin):
-    template_name = "register.html"
-
+    template_name = "signup.html"
+    redirect_field_name = REDIRECT_FIELD_NAME
     queryset = User.objects.all()
     permission_classes = (AllowAny,)
     serializer_class = RegisterSerializer
 
     def get(self, request):
         return self.render_to_response({})
+
+    def post(self, request, *args, **kwargs):
+        redirect_to = request.POST.get(
+            self.redirect_field_name, request.GET.get(self.redirect_field_name, ""),
+        )
+
+        return self.create(request, *args, **kwargs)
 
 
 class ServeFrontend(View, TemplateResponseMixin):
@@ -39,15 +46,21 @@ class ServeFrontend(View, TemplateResponseMixin):
 
 @authentication_classes([])
 @permission_classes([])
-class LoginView(APIView):
+class LoginView(APIView, TemplateResponseMixin):
     redirect_field_name = REDIRECT_FIELD_NAME
+    template_name = "login.html"
+
+    def get(self, request):
+
+        return self.render_to_response({})
 
     def post(self, request):
         redirect_to = request.POST.get(
             self.redirect_field_name, request.GET.get(self.redirect_field_name, ""),
         )
-
-        serializer = LoginSerializer(data=request.data)
+        username = request.data['username']
+        password = request.data['password']
+        serializer = LoginSerializer(data={"username": username, "password": password})
         if serializer.is_valid():
             user = authenticate(
                 username=serializer.validated_data["username"].lower(),

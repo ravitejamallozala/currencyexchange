@@ -105,9 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
+    # {
+    #     # 'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    # },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
@@ -140,8 +140,8 @@ LOGIN_REDIRECT_URL = "/"
 
 STATIC_ROOT = os.path.join(PROJECT_PATH, "deployment_static")
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-#     os.path.join(PROJECT_PATH, "frontend", "build"),
+    os.path.join(PROJECT_PATH, "static"),
+    # os.path.join(PROJECT_PATH, "frontend", "build"),
 ]
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
