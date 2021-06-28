@@ -21,7 +21,7 @@ class RegisterView(CreateAPIView, TemplateResponseMixin):
     template_name = "signup.html"
     redirect_field_name = REDIRECT_FIELD_NAME
     queryset = User.objects.all()
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticatedOrOptions,)
     serializer_class = RegisterSerializer
 
     def get(self, request):
@@ -32,7 +32,10 @@ class RegisterView(CreateAPIView, TemplateResponseMixin):
             self.redirect_field_name, request.GET.get(self.redirect_field_name, ""),
         )
 
-        return self.create(request, *args, **kwargs)
+        self.create(request, *args, **kwargs)
+        final_response = HttpResponseRedirect(redirect_to)
+        print(final_response)
+        return final_response
 
 
 class ServeFrontend(View, TemplateResponseMixin):
@@ -99,6 +102,7 @@ class LogoutView(APIView):
 
 class CurrencyViewset(ExchangeModelViewSet):
     serializer_class = CurrencySerializer
+    permission_classes = [IsAuthenticatedOrOptions]
     queryset = Currency.objects.all()
     filter_class = filters.CurrencyFilter
     ordering_fields = ("id", "name")
@@ -136,12 +140,14 @@ class ExchangeService:
             "compact": "ultra",
             "apiKey": {settings.EXCHANGE_API['API_TOKEN']}
         }
-        value = None
+        value = 0
         req_obj = requests.get(url=url, params=params)
         if req_obj.status_code == 200:
             data = req_obj.json()
             if converstion_string in data:
                 value = amount * data[converstion_string]
+        """We can roundoff the converted value to floating point precision 2"""
+        # return round(value, 2)
         return value
 
 
@@ -177,59 +183,40 @@ class WalletViewset(ExchangeModelViewSet):
     )
 
     @staticmethod
-    def withdraw_money(user, currency_obj, amount):
+    def withdraw_money(user, currency_obj, amount, is_transfer=False):
         if user.default_currency.id != currency_obj.id:
-            amount = ExchangeService.convert_currency(user.default_currency.name, currency_obj.name, amount)
+            amount = ExchangeService.convert_currency(currency_obj.name, user.default_currency.name, float(amount))
         validation = WalletViewset.validate_debit(user, amount)
         if not validation:
             raise ValidationError(f"Amount cannot be Withdrawn as Balance is lesser than withdrawing amount ")
-        tser = TransactionSerializer(data={
-            "user": user.id,
-            "dest_user_id": None,
-            "transaction_type": "debit",
-            "amount": -amount,
-            "currency_type": currency_obj.id,
-            "status": "accepted",
-            "description": None,
-        })
-        tser.is_valid(raise_exception=True)
-        tser.save()
-        wallet_obj = user.wallet
-        wallet_obj.current_balance -= amount
-        wallet_obj.save()
-        return
-
-    @staticmethod
-    def add_money(user, currency_obj, amount):
-        if user.default_currency.id != currency_obj.id:
-            amount = ExchangeService.convert_currency(user.default_currency.name, currency_obj.name, amount)
-        tser = TransactionSerializer(data={
-            "user": user.id,
-            "dest_user_id": None,
-            "transaction_type": "credit",
-            "amount": amount,
-            "currency_type": currency_obj.id,
-            "status": "accepted",
-            "description": None,
-        })
-        tser.is_valid(raise_exception=True)
-        tser.save()
-        wallet_obj = user.wallet
-        wallet_obj.current_balance += amount
-        wallet_obj.save()
-        return
-
-    @staticmethod
-    def transfer_money(from_user, to_user, amount, currency_obj):
-        if from_user.default_currency.id != currency_obj.id:
-            amount = ExchangeService.convert_currency(from_user.default_currency.name, currency_obj.name, amount)
-            validation = WalletViewset.validate_debit(from_user, amount)
-            if not validation:
-                raise ValidationError(f"Amount cannot be Transferred as Balance is lesser than transfering amount")
+        if not is_transfer:
             tser = TransactionSerializer(data={
-                "user": from_user.id,
-                "dest_user_id": to_user.id,
-                "transaction_type": "transfer",
+                "user": user.id,
+                "dest_user_id": None,
+                "transaction_type": "debit",
+                "amount": -amount,
+                "currency_type": currency_obj.id,
+                "status": "accepted",
+                "description": None,
+            })
+            tser.is_valid(raise_exception=True)
+            tser.save()
+        with transaction.atomic():
+            wallet_obj = Wallet.objects.filter(user_wallet=user.id).select_for_update()
+            wallet_obj = wallet_obj.first()
+            wallet_obj.current_balance -= amount
+            wallet_obj.save()
+        return
+
+    @staticmethod
+    def add_money(user, currency_obj, amount, is_transfer=False):
+        if user.default_currency.id != currency_obj.id:
+            amount = ExchangeService.convert_currency(currency_obj.name, user.default_currency.name, amount)
+        if not is_transfer:
+            tser = TransactionSerializer(data={
+                "user": user.id,
+                "dest_user_id": None,
+                "transaction_type": "credit",
                 "amount": amount,
                 "currency_type": currency_obj.id,
                 "status": "accepted",
@@ -237,9 +224,34 @@ class WalletViewset(ExchangeModelViewSet):
             })
             tser.is_valid(raise_exception=True)
             tser.save()
-            wallet_obj = user.wallet
+        with transaction.atomic():
+            wallet_obj = Wallet.objects.filter(user_wallet=user.id).select_for_update()
+            wallet_obj = wallet_obj.first()
             wallet_obj.current_balance += amount
             wallet_obj.save()
+        return
+
+    @staticmethod
+    def transfer_money(from_user, to_user, amount, currency_obj):
+        if from_user.default_currency.id != currency_obj.id:
+            amount = ExchangeService.convert_currency(currency_obj.name, from_user.default_currency.name, amount)
+            validation = WalletViewset.validate_debit(from_user, amount)
+            if not validation:
+                raise ValidationError(f"Amount cannot be Transferred as Balance is lesser than transfering amount")
+        tser = TransactionSerializer(data={
+            "user": from_user.id,
+            "dest_user_id": to_user.id,
+            "transaction_type": "transfer",
+            "amount": amount,
+            "currency_type": currency_obj.id,
+            "status": "accepted",
+            "description": None,
+        })
+        tser.is_valid(raise_exception=True)
+        # tser.save()
+        with transaction.atomic():
+            WalletViewset.withdraw_money(from_user, from_user.default_currency, amount, True)
+            WalletViewset.add_money(to_user, from_user.default_currency, amount, True)
 
     @classmethod
     def validate_debit(cls, user, amount):
@@ -281,12 +293,12 @@ class TransactionViewset(ExchangeModelViewSet):
         #     return Response(status=400, data={"message": "Transaction Invalid"})
         status = None
         if transaction_type == "debit":
-            WalletViewset.withdraw_money(request.user, curr_obj, amount)
+            WalletViewset.withdraw_money(request.user, curr_obj, float(amount), False)
             # raise Exception
             return Response(status=200,
                             data={"message": "Money Successfully Debited from your Wallet"})
         elif transaction_type == "credit":
-            WalletViewset.add_money(request.user, curr_obj, amount)
+            WalletViewset.add_money(request.user, curr_obj, float(amount), False)
             return Response(status=200,
                             data={"message": "Money Successfully Credited to your Wallet"})
 
@@ -295,7 +307,8 @@ class TransactionViewset(ExchangeModelViewSet):
     def transfer_money(self, request):
         amount = request.data.get("amount", None)
         currency_id = request.data.get("currency", None)
-        from_user_id = request.data.get("from_user_id", None)
+        # from_user_id = request.data.get("from_user_id", None)
+        from_user_id = request.user.id
         to_user_id = request.data.get("to_user_id", None)
         if not amount or not currency_id or not from_user_id or not to_user_id:
             return Response(status=400,
@@ -303,4 +316,5 @@ class TransactionViewset(ExchangeModelViewSet):
         from_user = get_object_or_404(User, pk=int(from_user_id))
         to_user = get_object_or_404(User, pk=int(to_user_id))
         curr_obj = get_object_or_404(Currency, pk=int(currency_id))
-        WalletViewset.transfer_money(from_user, to_user, amount, curr_obj)
+        WalletViewset.transfer_money(from_user, to_user, float(amount), curr_obj)
+        return Response(status=200, data={"message": "Money Successfully Transfered"})
