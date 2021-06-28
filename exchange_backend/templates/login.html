@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+<h1> login page</h2>
+
+    {% block scripts %}
+    {{ block.super }}
+    <script src="{% static 'js/login.js' %}"></script>
+    {% endblock %}
+
+    {% block body %}
+    <div class="container mt-5">
+        <h4 class="card-title mt-3 text-center">Currency Exchange</h4>
+        <div class="card bg-light">
+            <article class="card-body mx-auto" style="max-width: 400px;">
+                <h4 class="card-title mt-3 text-center">Login</h4>
+
+                <form action="{% url 'login' %}" role="form" method="post">
+              <input type="hidden" name="next" value="/" />
+
+                    {% csrf_token %}
+
+                    <div id="div_id_username"
+                         class="clearfix control-group {% if form.username.errors %}error{% endif %}">
+                        <div class="form-group">
+                            <label for="id_username">Username:</label>
+                            <input type="text" name="username" maxlength="100"
+                                   autocapitalize="off"
+                                   autocorrect="off" class="form-control textinput textInput"
+                                   id="id_username" required autofocus
+                                   {% if form.username.value %}value="{{ form.username.value }}" {% endif %}>
+                            {% if form.username.errors %}
+                            <p class="text-error">
+                                {{ form.username.errors|striptags }}
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div id="div_id_password"
+                         class="clearfix control-group {% if form.password.errors %}error{% endif %}">
+                        <div class="form-group">
+                            <label for="id_password">Password</label>
+                            <input type="password" name="password" maxlength="100" autocapitalize="off"
+                                   autocorrect="off" class="form-control textinput textInput" id="id_password" required>
+                            {% if form.password.errors %}
+                            <p class="text-error">
+                                {{ form.password.errors|striptags }}
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-outline-success btn-block" id="login_submit"> Login
+                        </button>
+                    </div> <!-- form-group// -->
+                </form>
+
+
+            </article>
+        </div>
+    </div>
+    {% endblock %}

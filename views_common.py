@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import transaction
-
+from functools import wraps
 import models_common
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -114,3 +114,12 @@ ExchangeGenericViewSet = get_base_viewset(
     create=False, delete=False, update=False, read=False,
 )
 ExchangeReadUpdateViewSet = get_base_viewset(create=False, delete=False)
+
+
+def transaction_atomic_db(func):
+    @wraps(func)
+    def inner(*args, **kwargs):
+        return func(*args, **kwargs)
+
+    setattr(inner, "ATOMIC_REQUESTS", True)
+    return inner

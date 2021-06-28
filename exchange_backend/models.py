@@ -35,7 +35,7 @@ class User(auth_models.AbstractUser, ExchangeBaseModel):
     def create_default_values(instance):
         from exchange_backend.serializers import WalletSerializer
         if not instance.default_currency:
-            currency_obj = Currency.objects.get_or_create(name="INR")[0]
+            currency_obj = Currency.objects.get_or_create(name="INR")[0] # Assuming INR to be default currency of user
             instance.default_currency = currency_obj
         else:
             currency_obj = instance.default_currency
@@ -52,19 +52,22 @@ class User(auth_models.AbstractUser, ExchangeBaseModel):
 
     @classmethod
     def post_save(cls, sender, instance, created, *args, **kwargs):
-        from exchange_backend.views import ExchangeService
-        old_instance = instance.old_instance
-        print(old_instance)
-        if old_instance.default_currency != instance.default_currency:
-            wallet_obj = instance.wallet
-            converted_value = ExchangeService.convert_currency(old_instance.default_currency.name,
-                                                               instance.default_currency.name,
-                                                               wallet_obj.current_balance)
-            wallet_obj.current_balance = converted_value
-            wallet_obj.currency_type = instance.default_currency
-            wallet_obj.save()
         if created:
             transaction.on_commit(lambda: cls.create_default_values(instance))
+        else:
+            from exchange_backend.views import ExchangeService
+            old_instance = instance.old_instance
+            print(old_instance)
+            if not old_instance:
+                return
+            if old_instance.default_currency != instance.default_currency:
+                wallet_obj = instance.wallet
+                converted_value = ExchangeService.convert_currency(old_instance.default_currency.name,
+                                                                   instance.default_currency.name,
+                                                                   wallet_obj.current_balance)
+                wallet_obj.current_balance = converted_value
+                wallet_obj.currency_type = instance.default_currency
+                wallet_obj.save()
 
 
 models.signals.post_save.connect(User.post_save, sender=User)
@@ -80,7 +83,7 @@ class Transaction(ExchangeBaseModel):
         max_length=NAME_LENGTH, choices=TRANSACTION_TYPE_CHOICES,
     )
     amount = models.FloatField()
-    timestamp = models.DateTimeField(default=django.utils.timezone.now)
+    timestamp = models.DateTimeField(default=django.utils.timezone.now)  # noqa
     currency_type = models.ForeignKey(Currency)
     remaining_balance = models.FloatField(blank=True, null=True)
     status = models.CharField(
@@ -89,3 +92,14 @@ class Transaction(ExchangeBaseModel):
     description = models.CharField(
         max_length=NAME_LENGTH, blank=True, null=True
     )
+
+    @classmethod
+    def post_save(cls, sender, instance, created, *args, **kwargs):
+        # Update remaining balance here
+        if created:
+            wallet = instance.user.wallet
+            instance.remaining_balance = wallet.current_balance
+            instance.save()
+
+
+models.signals.post_save.connect(User.post_save, sender=User)

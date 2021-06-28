@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "django_extensions",
     "rest_framework",
+    "rest_framework.authtoken",
     "django_filters",
     "exchange_backend",
-
 
 ]
 
@@ -57,6 +56,18 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'urls'
+
+REST_FRAMEWORK = {
+    "PAGE_SIZE": 100,
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "auth.CustomSessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "misc.IsAuthenticatedOrOptions",
+    ),
+    "DATETIME_FORMAT": "%Y-%m-%d %H:%M:%S",
+}
 
 TEMPLATES = [
     {
@@ -76,7 +87,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -88,7 +98,6 @@ DATABASES = {
 }
 AUTH_USER_MODEL = 'exchange_backend.User'
 
-
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -96,9 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
+    # {
+    #     # 'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    # },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
@@ -106,7 +115,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -121,19 +129,22 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
 
+LOGIN_URL = "/login/"
+LOGOUT_URL = "/logout/"
+LOGIN_REDIRECT_URL = "/"
+
 STATIC_ROOT = os.path.join(PROJECT_PATH, "deployment_static")
-# STATICFILES_DIRS = [
-#     os.path.join(PROJECT_PATH, "frontend", "build", "static"),
-#     os.path.join(PROJECT_PATH, "frontend", "build"),
-# ]
+STATICFILES_DIRS = [
+    os.path.join(PROJECT_PATH, "static"),
+    # os.path.join(PROJECT_PATH, "frontend", "build"),
+]
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
+SESSION_COOKIE_NAME = "sessionid"
 EXCHANGE_API = {}
 from local_settings import *  # noqa
