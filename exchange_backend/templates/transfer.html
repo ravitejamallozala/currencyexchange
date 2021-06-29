@@ -9,7 +9,7 @@
 {% block body %}
     <div class="form-group">
         <label for="user1">From</label><br>
-        <input class="form-control col-6" type="text" id="user1" data-csrf="{{ csrf_token }}" data-id="{{user.id}}"
+        <input class="form-control " type="text" id="user1" data-csrf="{{ csrf_token }}" data-id="{{user.id}}"
                name="user1" value="{{user.username}}" disabled>
     </div>
 
@@ -20,7 +20,7 @@
 
     <div class="form-group">
         <label for="curr_dropdown">Currency Type</label><br>
-        <div class="col-6">
+        <div >
             <select id="curr_dropdown" name="curr_dropdown" class="form-control">
                 {% for curr in currencies %}
                 <option value="{{ curr.id }}" selected>{{ curr.name }}</option>

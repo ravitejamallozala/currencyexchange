@@ -1,12 +1,13 @@
 var $DOM = $(document);
-$DOM.on('click', '#withdraw-submit', function () {
+$DOM.on('click', '#profile-submit', function () {
 
-    console.log("Add money Function");
+    console.log("Profile Function");
+
     data = {};
     data["amount"] = $("#amount").val();
     data["currency_id"] = $("#curr_dropdown").val();
     data["to_user_id"] = $("#to_user").val();
-    data["transaction_type"] = "debit";
+    data["transaction_type"] = "credit";
     data['csrfmiddlewaretoken'] = $("#user1").data('csrf');
     console.log("data: ", data);
 

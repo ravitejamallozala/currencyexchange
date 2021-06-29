@@ -77,6 +77,33 @@ class AddmoneyView(View, TemplateResponseMixin):
         })
 
 
+class WithdrawmoneyView(View, TemplateResponseMixin):
+    # TODO roman add permission
+    template_name = "withdraw_money.html"
+    permission_classes = [IsAuthenticatedOrOptions]
+
+    def get(self, request):
+        currencies = Currency.objects.all()
+        users = User.objects.all()
+        return self.render_to_response({
+            "user": request.user if request.user else None,
+            "currencies": currencies,
+            "users": users
+        })
+
+
+class ProfileView(View, TemplateResponseMixin):
+    # TODO roman add permission
+    template_name = "profile.html"
+    permission_classes = [IsAuthenticatedOrOptions]
+
+    def get(self, request):
+        users = User.objects.all()
+        return self.render_to_response({
+            "user": request.user
+        })
+
+
 @authentication_classes([])
 @permission_classes([])
 class LoginView(APIView, TemplateResponseMixin):

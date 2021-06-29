@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block scripts %}
+{{ block.super }}
+<script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="">
+        <label for="profile-image">Profile Pic</label><br>
+        <img src="{{ user.profile_image }}"  alt="No profile Image" id="profile-image">
+
+<!--        <label class="form-label" for="customFile">Select image</label>-->
+        <input type="file" class="" style="" id="customFile" />
+
+    </div>
+
+    <div class="form-group">
+        <label for="user1">From</label><br>
+        <input class="form-control " type="text" id="user1" data-csrf="{{ csrf_token }}" data-id="{{user.id}}"
+               name="user1" value="{{user.username}}" disabled>
+    </div>
+
+    <div class="form-group">
+        <label for="curr_dropdown">Currency Type</label><br>
+        <div class="">
+            <select id="curr_dropdown" name="curr_dropdown" class="form-control">
+                {% for curr in currencies %}
+                <option value="{{ curr.id }}" selected>{{ curr.name }}</option>
+
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="to_user">To User</label><br>
+        <select id="to_user" name="to_user" class="form-control">
+            {% for usr in users %}
+            <option value="{{ usr.id }}" selected>{{ usr.username }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-outline-success btn-block" id="profile-submit"> Update Profile
+        </button>
+    </div>
+{% endblock %}

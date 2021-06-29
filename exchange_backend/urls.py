@@ -1,7 +1,7 @@
 from rest_framework import routers
 from django.conf.urls import url, include
 from . import views
-from .views import RegisterView, TransferView, AddmoneyView
+from .views import RegisterView, TransferView, AddmoneyView, WithdrawmoneyView, ProfileView
 
 router = routers.DefaultRouter()
 router.register(r"user", views.UserViewSet, base_name="user")
@@ -16,6 +16,8 @@ urlpatterns = [
     url(r"^register/$", RegisterView.as_view(), name='register'),
     url(r"^transfer_view/$", TransferView.as_view(), name='transfer_view'),
     url(r"^addmoney/$", AddmoneyView.as_view(), name='addmoney'),
+    url(r"^withdraw/$", WithdrawmoneyView.as_view(), name='withdraw'),
+    url(r"^profile/$", ProfileView.as_view(), name='profile'),
     url(r"^.+/", views.ServeFrontend.as_view(), name="serve_frontend"),
     url(r"^$", views.ServeFrontend.as_view(), name="serve_frontend"),
 ]
