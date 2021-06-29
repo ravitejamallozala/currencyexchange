@@ -52,6 +52,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
 
         user.set_password(validated_data['password'])
+        user.groups.add(1)
         user.save()
         return user
 
