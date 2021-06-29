@@ -44,6 +44,36 @@ class ServeFrontend(View, TemplateResponseMixin):
         return self.render_to_response({})
 
 
+class TransferView(View, TemplateResponseMixin):
+    # TODO roman add permission
+    template_name = "transfer.html"
+    permission_classes = [IsAuthenticatedOrOptions]
+
+    def get(self, request):
+        currencies = Currency.objects.all()
+        users = User.objects.all()
+        return self.render_to_response({
+            "user": request.user if request.user else None,
+            "currencies": currencies,
+            "users": users
+        })
+
+
+class AddmoneyView(View, TemplateResponseMixin):
+    # TODO roman add permission
+    template_name = "add_money.html"
+    permission_classes = [IsAuthenticatedOrOptions]
+
+    def get(self, request):
+        currencies = Currency.objects.all()
+        users = User.objects.all()
+        return self.render_to_response({
+            "user": request.user if request.user else None,
+            "currencies": currencies,
+            "users": users
+        })
+
+
 @authentication_classes([])
 @permission_classes([])
 class LoginView(APIView, TemplateResponseMixin):
@@ -290,6 +320,8 @@ class TransactionViewset(ExchangeModelViewSet):
             return Response(status=200,
                             data={"message": "Money Successfully Credited to your Wallet"})
 
+    from django.views.decorators.csrf import csrf_exempt
+    @csrf_exempt
     @transaction_atomic_db
     @list_route(methods=['post'])
     def transfer_money(self, request):

@@ -16,7 +16,7 @@
                 <h4 class="card-title mt-3 text-center">Login</h4>
 
                 <form action="{% url 'login' %}" role="form" method="post">
-              <input type="hidden" name="next" value="/" />
+                  <input type="hidden" name="next" value="/" />
 
                     {% csrf_token %}
 
