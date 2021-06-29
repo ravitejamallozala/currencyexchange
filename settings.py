@@ -25,7 +25,7 @@ SECRET_KEY = 'pid=6p@u7j1#$ti8i*hgunfjr@8m*+bg)d!3n)*)!%t@ecl0if'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
