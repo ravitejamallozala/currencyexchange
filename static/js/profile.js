@@ -4,12 +4,12 @@ $DOM.on('click', '#profile-submit', function () {
     console.log("Profile Function");
     user = $("#profile-image").data('user');
     var formData = new FormData();
-    var pimage = $("#customFile")[0].files[0]
+    var pimage = $("#customFile")[0].files[0];
     if (pimage) {
         formData.append("profile_image", $("#customFile")[0].files[0]);
     }
-    formData.append("currency_id", $("#curr_dropdown").val());
-    console.log("Profile Function");
+    formData.append("default_currency", $("#curr_dropdown").val());
+    console.log("Profile Function", formData);
 
 
     $.ajax({
@@ -23,11 +23,14 @@ $DOM.on('click', '#profile-submit', function () {
         },
         success: function (result) {
             if (result) {
-                console.log("Add money Successed");
-                 alertify.message('Profile data updated');
+                alertify.message('Profile Updated!!!');
                 alertify.set('notifier', 'position', 'top-right');
+                setTimeout(function () {
+                    location.reload(true);
+                }, 1000);
+                console.log("Profile Updation Successful");
             } else {
-                console.log("Add money  Failed");
+                console.log("Profile Updation  Failed");
                 alertify.error(result.message);
             }
         }

@@ -98,12 +98,11 @@ class ProfileView(View, TemplateResponseMixin):
     permission_classes = [IsAuthenticatedOrOptions]
 
     def get(self, request):
-        users = User.objects.all()
         currencies = Currency.objects.all()
         return self.render_to_response({
             "user": request.user,
             "currencies": currencies,
-
+            "wallet": request.user.wallet,
         })
 
 

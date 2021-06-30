@@ -52,6 +52,7 @@ class User(auth_models.AbstractUser, ExchangeBaseModel):
 
     @classmethod
     def post_save(cls, sender, instance, created, *args, **kwargs):
+        print("Here in User postsave")
         if created:
             transaction.on_commit(lambda: cls.create_default_values(instance))
         else:

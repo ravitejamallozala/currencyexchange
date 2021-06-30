@@ -10,7 +10,7 @@
 
     <title>
         {% block title %}
-        Currency Exchange
+        Currency Exchange App
         {% endblock %}
     </title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/cover/">
@@ -123,12 +123,16 @@
 <div class="cover-container d-flex h-100 w-100 p-3 mx-auto flex-column">
     <header class="masthead mb-auto">
         <div class="inner">
-            <h3 class="masthead-brand white">CurrExchange</h3>
+            <h3 class="masthead-brand white">Currency Exchange App</h3>
             <nav class="nav nav-masthead justify-content-center">
                 <a class="nav-link active" href="#">Home</a>
                 <a class="nav-link" href="/profile">Profile</a>
-<!--                <a class="nav-link" href="#">Contact</a>-->
+                <!--                <a class="nav-link" href="#">Contact</a>-->
             </nav>
+        </div>
+        <div class="" style="padding-top: 5%;">
+            {% block head %}
+            {% endblock %}
         </div>
     </header>
     <main role="main" class="inner cover">

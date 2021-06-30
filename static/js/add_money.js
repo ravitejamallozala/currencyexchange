@@ -14,6 +14,10 @@ $DOM.on('click', '#addmoney-submit', function () {
     $.ajax({
         type: 'post',
         data: JSON.stringify(data),
+        headers: {
+            "X-CSRFToken": $("#amount").data('csrf'),
+            "content-type": "application/json"
+        },
         url: '/transaction/wallet_transaction/',
 
         success: function (result) {
