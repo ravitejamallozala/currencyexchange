@@ -7,22 +7,28 @@
 {% endblock %}
 
 {% block body %}
+    <div class="form-group">
+        <label for="wallet">Current Wallet Balance</label><br>
+        <input class="form-control " type="text" id="wallet" data-id="{{user.id}}"
+               name="wallet" value="{{wallet.current_balance}}" disabled>
+    </div>
 
     <div class="form-group">
         <label for="amount">Amount</label><br>
-        <input class="form-control" type="number" id="amount" name="amount" value="">
+        <input class="form-control" type="number" data-csrf="{{ csrf_token }}"  id="amount" name="amount" value="0">
     </div>
 
     <div class="form-group">
         <label for="curr_dropdown">Currency Type</label><br>
-        <div class="">
-            <select id="curr_dropdown" name="curr_dropdown" class="form-control">
-                {% for curr in currencies %}
-                <option value="{{ curr.id }}" selected>{{ curr.name }}</option>
+        <select id="curr_dropdown" name="curr_dropdown" class="form-control">
+                            {% for curr in currencies %}
 
-                {% endfor %}
-            </select>
-        </div>
+            <option value="{{ curr.id }}" {% if curr.name == user.default_currency.name %} selected {% endif %}>
+                {{ curr.name }}
+            </option>
+                        {% endfor %}
+
+        </select>
     </div>
 
     <div class="form-group">

@@ -17,6 +17,8 @@ from views_common import *
 from .models import Currency, Wallet, Transaction, User
 
 
+@authentication_classes([])
+@permission_classes([])
 class RegisterView(CreateAPIView, TemplateResponseMixin):
     template_name = "signup.html"
     redirect_field_name = REDIRECT_FIELD_NAME
@@ -44,7 +46,10 @@ class ServeFrontend(View, TemplateResponseMixin):
     permission_classes = [IsAuthenticatedOrOptions]
 
     def get(self, request):
-        return self.render_to_response({})
+        return self.render_to_response({
+            "user": request.user,
+            "is_authenticated": request.user.is_authenticated,
+        })
 
 
 class TransferView(View, TemplateResponseMixin):
@@ -56,7 +61,8 @@ class TransferView(View, TemplateResponseMixin):
         currencies = Currency.objects.all()
         users = User.objects.all()
         return self.render_to_response({
-            "user": request.user if request.user else None,
+            "user": request.user,
+            "wallet": request.user.wallet if request.user.is_authenticated else None,
             "currencies": currencies,
             "users": users
         })
@@ -71,7 +77,8 @@ class AddmoneyView(View, TemplateResponseMixin):
         currencies = Currency.objects.all()
         users = User.objects.all()
         return self.render_to_response({
-            "user": request.user if request.user else None,
+            "user": request.user,
+            "wallet": request.user.wallet if request.user.is_authenticated else None,
             "currencies": currencies,
             "users": users
         })
@@ -86,7 +93,8 @@ class WithdrawmoneyView(View, TemplateResponseMixin):
         currencies = Currency.objects.all()
         users = User.objects.all()
         return self.render_to_response({
-            "user": request.user if request.user else None,
+            "user": request.user,
+            "wallet": request.user.wallet if request.user.is_authenticated else None,
             "currencies": currencies,
             "users": users
         })
@@ -98,12 +106,11 @@ class ProfileView(View, TemplateResponseMixin):
     permission_classes = [IsAuthenticatedOrOptions]
 
     def get(self, request):
-        users = User.objects.all()
         currencies = Currency.objects.all()
         return self.render_to_response({
             "user": request.user,
             "currencies": currencies,
-
+            "wallet": request.user.wallet if request.user.is_authenticated else None,
         })
 
 
@@ -344,7 +351,7 @@ class TransactionViewset(ExchangeModelViewSet):
     @list_route(methods=['post'])
     def wallet_transaction(self, request):
         amount = request.data.get("amount", None)
-        currency_id = request.data.get("currency", None)
+        currency_id = request.data.get("currency_id", None)
         transaction_type = request.data.get("transaction_type", None)
         if transaction_type not in Transaction.TRANSACTION_TYPE_CHOICES:
             return Response(status=400, data={"message": "Transaction Invalid"})
@@ -366,7 +373,7 @@ class TransactionViewset(ExchangeModelViewSet):
     @list_route(methods=['post'])
     def transfer_money(self, request):
         amount = request.data.get("amount", None)
-        currency_id = request.data.get("currency", None)
+        currency_id = request.data.get("currency_id", None)
         # from_user_id = request.data.get("from_user_id", None)
         from_user_id = request.user.id
         to_user_id = request.data.get("to_user_id", None)
