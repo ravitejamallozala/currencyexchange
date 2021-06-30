@@ -8,9 +8,11 @@
 {% endblock %}
 
 {% block head %}
-<button type="button" class="btn btn-primary btn-lg">Add money</button>
-<button type="button" class="btn btn-secondary btn-lg">Withdraw money</button>
+<div class="btn-group" style="padding-top: 5%">
+<a href="{% url 'addmoney' %}"><button type="button" class="btn btn-primary btn-lg">Add money</button></a>
+<a href="{% url 'withdraw' %}"><button type="button" class="btn btn-secondary btn-lg">Withdraw money</button></a>
 {% endblock %}
+</div>
 
 {% block body %}
 

@@ -44,7 +44,10 @@ class ServeFrontend(View, TemplateResponseMixin):
     permission_classes = [IsAuthenticatedOrOptions]
 
     def get(self, request):
-        return self.render_to_response({})
+        return self.render_to_response({
+            "user": request.user,
+            "is_authenticated": request.user.is_authenticated,
+        })
 
 
 class TransferView(View, TemplateResponseMixin):
