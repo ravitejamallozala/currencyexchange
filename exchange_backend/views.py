@@ -99,8 +99,11 @@ class ProfileView(View, TemplateResponseMixin):
 
     def get(self, request):
         users = User.objects.all()
+        currencies = Currency.objects.all()
         return self.render_to_response({
-            "user": request.user
+            "user": request.user,
+            "currencies": currencies,
+
         })
 
 
@@ -359,8 +362,6 @@ class TransactionViewset(ExchangeModelViewSet):
             return Response(status=200,
                             data={"message": "Money Successfully Credited to your Wallet"})
 
-    from django.views.decorators.csrf import csrf_exempt
-    @csrf_exempt
     @transaction_atomic_db
     @list_route(methods=['post'])
     def transfer_money(self, request):

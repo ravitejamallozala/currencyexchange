@@ -2,18 +2,21 @@
 {% load static %}
 
 {% block scripts %}
-{{ block.super }}
 <script src="{% static 'js/profile.js' %}"></script>
+
+{{ block.super }}
 {% endblock %}
 
 {% block body %}
 
+
+    {% csrf_token %}
     <div class="">
         <label for="profile-image">Profile Pic</label><br>
-        <img src="{{ user.profile_image }}"  alt="No profile Image" id="profile-image">
+        <img src="{{ user.profile_image.url }}" data-user="{{user.id}}" data-csrf="{{ csrf_token }}" alt="No profile Image" id="profile-image">
 
-<!--        <label class="form-label" for="customFile">Select image</label>-->
-        <input type="file" class="" style="" id="customFile" />
+        <!--        <label class="form-label" for="customFile">Select image</label>-->
+        <input type="file" class="" style="" id="customFile"/>
 
     </div>
 
@@ -28,8 +31,9 @@
         <div class="">
             <select id="curr_dropdown" name="curr_dropdown" class="form-control">
                 {% for curr in currencies %}
-                <option value="{{ curr.id }}" selected>{{ curr.name }}</option>
-
+                <option value="{{ curr.id }}" {% if curr.name == user.default_currency.name %} selected {% endif %}>
+                    {{ curr.name }}
+                </option>
                 {% endfor %}
             </select>
         </div>

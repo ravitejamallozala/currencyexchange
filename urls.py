@@ -20,14 +20,14 @@ from django.conf.urls import include
 from django.conf.urls.static import static
 from django.views.static import serve
 
-
 urlpatterns = static(settings.STATIC_URL, serve, document_root=settings.STATIC_ROOT) + [
-    url(r"^admin/", admin.site.urls),
-    url("", include("exchange_backend.urls")),
-    url("", include("rest_framework.urls", namespace="rest_framework")),
     url(
         r"^media/(?P<path>.*)$",
         serve,
         {"document_root": settings.MEDIA_ROOT, "show_indexes": True},
     ),
+    url(r"^admin/", admin.site.urls),
+    url("", include("exchange_backend.urls")),
+    url("", include("rest_framework.urls", namespace="rest_framework")),
+
 ]

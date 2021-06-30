@@ -2,27 +2,32 @@ var $DOM = $(document);
 $DOM.on('click', '#profile-submit', function () {
 
     console.log("Profile Function");
+    user = $("#profile-image").data('user');
+    var formData = new FormData();
+    var pimage = $("#customFile")[0].files[0]
+    if (pimage) {
+        formData.append("profile_image", $("#customFile")[0].files[0]);
+    }
+    formData.append("currency_id", $("#curr_dropdown").val());
+    console.log("Profile Function");
 
-    data = {};
-    data["amount"] = $("#amount").val();
-    data["currency_id"] = $("#curr_dropdown").val();
-    data["to_user_id"] = $("#to_user").val();
-    data["transaction_type"] = "credit";
-    data['csrfmiddlewaretoken'] = $("#user1").data('csrf');
-    console.log("data: ", data);
 
     $.ajax({
-        type: 'post',
-        data: JSON.stringify(data),
-        url: '/transaction/wallet_transaction/',
-
+        type: 'patch',
+        data: formData,
+        url: '/api/user/' + user + "/",
+        contentType: false,
+        processData: false,
+        headers: {
+            "X-CSRFToken": $("#profile-image").data('csrf'),
+        },
         success: function (result) {
-            console.log(result);
-            if (result.success) {
+            if (result) {
                 console.log("Add money Successed");
+                 alertify.message('Profile data updated');
+                alertify.set('notifier', 'position', 'top-right');
             } else {
                 console.log("Add money  Failed");
-                alertify.set('notifier', 'position', 'top-right');
                 alertify.error(result.message);
             }
         }
