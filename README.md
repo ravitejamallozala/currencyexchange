@@ -15,7 +15,7 @@ Basically, the amount in the Wallet supports all the international currency type
 6. User can **Transfer money** to other users in any type of currency.
 7. User can change his/her profile picture.
 
-###Project details:
+### Project details:
 The web application is developed using Python Django rest framework, sqlite3, Jquery, bootstrap, CSS, HTML.
 
 Deployed using Docker, Docker-compose, Nginx, uwsgi, supervisord, AWS Ec2.
@@ -29,7 +29,7 @@ We can use Redis for caching conversion data (which is fetched daily)
 - Testing and Exception Handling can be more precise. 
 
 
-###Currency Exchange Deployment Process:
+### Currency Exchange Deployment Process:
 The Application is deployed on AWS Ec2 machine.
 	- Ubuntu Ec2 Instance - t2.micro
 	- installed docker.io & docker-compose using user-data script.
@@ -88,7 +88,7 @@ Ansible Example:
       volumes:
          - /data/currency_exchange/media:/opt/app/media 
 ````
-###Improvements in Deployment Process:
+### Improvements in Deployment Process:
 
 - In Ideal case, we use a CICD  tool such as Jenkins to trigger job whenever new code is merged (as we can integrate with GitHub)
 - We build the docker in the Jenkins server where new code is pulled and building docker is done.
