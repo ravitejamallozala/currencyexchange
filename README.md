@@ -63,7 +63,7 @@ On Aws server:
 
 	- with Docker run command:	
     
-	Command:` docker run -d -p 0.0.0.0:80:80/tcp -n curr_exc_app ravitejamallozala/projects:curr_exc_app`
+	Command:` docker run -d -p 0.0.0.0:80:80/tcp --name curr_exc_app ravitejamallozala/projects:curr_exc_app`
 	
 	- Docker-swarm can be used to pull and deploy the image which makes sure we have zero downtimes while deployment
 	- Also Using Ansible playbook we can deploy containers on application server and we can also mount volumes so that data can be maintained when new container is deployed.
