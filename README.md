@@ -12,11 +12,11 @@ The Application is deployed on AWS Ec2 machine.
 	- Added required Security group for server.
 
 On Local :
-	1. Pull latest Code. 
-	2. Build the docker using Docker build command.
+1. Pull latest Code. 
+2. Build the docker using Docker build command.
 - Command: `sudo docker build -f Deployment/Dockerfile --no-cache -t ravitejamallozala/projects:curr_exc_app .`
-	3. Push the new docker image to Docker register.
-		- Command: sudo docker push ravitejamallozala/projects:curr_exc_app
+3. Push the new docker image to Docker register.
+	- Command: `sudo docker push ravitejamallozala/projects:curr_exc_app`
 
 On Aws server:
 1. Pulling new Docker image on server
