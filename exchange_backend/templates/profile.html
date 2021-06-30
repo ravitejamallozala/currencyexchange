@@ -8,10 +8,15 @@
 {% endblock %}
 
 {% block head %}
-<div class="btn-group center-block" style="padding-top: 5%">
-<a href="{% url 'addmoney' %}"><button type="button" class="btn btn-info  mr-4">Add money</button></a>
-<a href="{% url 'withdraw' %}"><button type="button" class="btn btn-info ">Withdraw money</button></a>
-{% endblock %}
+<div class="btn-group " style="
+            padding-top: 5%; float: left; padding-left: 28%">
+    <a href="{% url 'addmoney' %}">
+        <button type="button" class="btn btn-info  mr-4">Add money</button>
+    </a>
+    <a href="{% url 'withdraw' %}">
+        <button type="button" class="btn btn-info ">Withdraw money</button>
+    </a>
+    {% endblock %}
 </div>
 
 {% block body %}
