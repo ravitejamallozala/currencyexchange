@@ -6,6 +6,7 @@ COPY Deployment/supervisord.conf /etc/supervisor/supervisord.conf
 ADD  requirements.txt  /opt/
 RUN pip install -r /opt/requirements.txt
 COPY Deployment/wsgi.ini /opt/wsgi.ini
+COPY Deployment/local_settings.py /opt/app/
 #COPY crontab.txt /opt/crontab.txt
 #RUN  crontab /opt/crontab.txt
 ADD  ./  /opt/app

@@ -1,4 +1,19 @@
 # Currency Exchange
+This Application is a small demonstration of Integrating Third party API (Currency Conversion API) in our web application.
+
+A User when registered will have a personal Wallet to save money, here user can save money in any currency type (example: INR, USD, GBP etc).
+user can also change his Currency type. 
+
+Basically the amount in the Wallet supports all the international currency types. So one can add/withdraw/transfer money in any currency value.
+
+Web Application Features:
+1. Registration and login into the Application 
+2. User can store the currency in any currency type.
+3. User can change his/her wallet default currency type.
+4. User can **Add money** to his/her wallet. Any currency type value can be added to Wallet.
+5. User can **Withdraw money** from his/her wallet. Any currency type value can be Withdrawn from the wallet.
+6. User can Tranfer
+
 Currency Exchange Deployment Process:
 
 The Application is deployed on AWS Ec2 machine.
