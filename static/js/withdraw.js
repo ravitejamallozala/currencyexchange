@@ -25,6 +25,11 @@ $DOM.on('click', '#withdraw-submit', function () {
                 alertify.set('notifier', 'position', 'top-right');
                 alertify.error('Failed to withdraw Money!');
             }
+        },
+        error: function (request, error) {
+            alertify.set('notifier', 'position', 'top-right');
+            alertify.error("Sorry! Failed due to Insuffecient balance.");
+
         }
     });
 });

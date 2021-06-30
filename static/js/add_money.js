@@ -33,6 +33,11 @@ $DOM.on('click', '#addmoney-submit', function () {
                 alertify.error('Failed to add Money!');
             }
 
+        },
+        error: function (request, error) {
+            alertify.set('notifier', 'position', 'top-right');
+            alertify.error("Failed to add Money!");
+
         }
     });
 });

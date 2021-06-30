@@ -27,8 +27,14 @@ $DOM.on('click', '#transfer-submit', function () {
                 }, 1000);
             } else {
                 alertify.set('notifier', 'position', 'top-right');
-                alertify.error("Failed Money Trasnfered!!!");
+                alertify.error("Failed Money Transfered!!!");
             }
+        },
+        error: function (request, error) {
+            alertify.set('notifier', 'position', 'top-right');
+            alertify.error("Sorry! Money Transfered Failed.");
+
         }
+
     });
 });

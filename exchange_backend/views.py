@@ -110,6 +110,7 @@ class ProfileView(View, TemplateResponseMixin):
         return self.render_to_response({
             "user": request.user,
             "currencies": currencies,
+            "image_url": request.user.profile_image.url if request.user.profile_image else "",
             "wallet": request.user.wallet if request.user.is_authenticated else None,
         })
 
@@ -154,7 +155,7 @@ class LogoutView(APIView):
         redirect_to = request.POST.get(
             self.redirect_field_name, request.GET.get(self.redirect_field_name, ""),
         )
-        final_response = HttpResponseRedirect(redirect_to)
+        final_response = HttpResponseRedirect('/')
         logout(request)
         return final_response
 

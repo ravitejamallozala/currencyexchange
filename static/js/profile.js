@@ -34,6 +34,11 @@ $DOM.on('click', '#profile-submit', function () {
                 alertify.set('notifier', 'position', 'top-right');
                 alertify.error('Failed to Update Profile!');
             }
+        },
+        error: function (request, error) {
+            alertify.set('notifier', 'position', 'top-right');
+            alertify.error("Failed Money Transfered!!!");
+
         }
     });
 });

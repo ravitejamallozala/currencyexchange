@@ -144,6 +144,13 @@
                         </button>
                     </a>
                 </div>
+                {% else %}
+
+                    <a href="/logout">
+                        <button type="button" class=" nav-link btn space-btn" style="margin-right: 40%">
+                            Logout
+                        </button>
+                    </a>
                 {% endif %}
 
                 {% if user.is_authenticated %}

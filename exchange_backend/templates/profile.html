@@ -33,7 +33,7 @@
 
 
     <label for="profile-image">Profile Pic</label><br>
-    <img class="img-fluid" src="{{ user.profile_image.url }}" data-user="{{user.id}}" data-csrf="{{ csrf_token }}"
+    <img class="img-fluid" src="{{ image_url }}" data-user="{{user.id}}" data-csrf="{{ csrf_token }}"
          alt="No profile Image" id="profile-image">
 
     <!--        <label class="form-label" for="customFile">Select image</label>-->
