@@ -26,7 +26,7 @@ class RegisterView(CreateAPIView, TemplateResponseMixin):
     permission_classes = (IsAuthenticatedOrOptions,)
     serializer_class = RegisterSerializer
 
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         return self.render_to_response({})
 
     def post(self, request, *args, **kwargs):
@@ -40,24 +40,22 @@ class RegisterView(CreateAPIView, TemplateResponseMixin):
         return final_response
 
 
-class ServeFrontend(View, TemplateResponseMixin):
+class ServeFrontend(TemplateView):
     # TODO roman add permission
     template_name = "base.html"
-    permission_classes = [IsAuthenticatedOrOptions]
 
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         return self.render_to_response({
             "user": request.user,
             "is_authenticated": request.user.is_authenticated,
         })
 
 
-class TransferView(View, TemplateResponseMixin):
+class TransferView(BaseTemplateView):
     # TODO roman add permission
     template_name = "transfer.html"
-    permission_classes = [IsAuthenticatedOrOptions]
 
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         currencies = Currency.objects.all()
         users = User.objects.all()
         return self.render_to_response({
@@ -68,12 +66,11 @@ class TransferView(View, TemplateResponseMixin):
         })
 
 
-class AddmoneyView(View, TemplateResponseMixin):
+class AddmoneyView(BaseTemplateView):
     # TODO roman add permission
     template_name = "add_money.html"
-    permission_classes = [IsAuthenticatedOrOptions]
 
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         currencies = Currency.objects.all()
         users = User.objects.all()
         return self.render_to_response({
@@ -84,12 +81,11 @@ class AddmoneyView(View, TemplateResponseMixin):
         })
 
 
-class WithdrawmoneyView(View, TemplateResponseMixin):
+class WithdrawmoneyView(BaseTemplateView):
     # TODO roman add permission
     template_name = "withdraw_money.html"
-    permission_classes = [IsAuthenticatedOrOptions]
 
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         currencies = Currency.objects.all()
         users = User.objects.all()
         return self.render_to_response({
@@ -100,28 +96,27 @@ class WithdrawmoneyView(View, TemplateResponseMixin):
         })
 
 
-class ProfileView(View, TemplateResponseMixin):
+class ProfileView(BaseTemplateView):
     # TODO roman add permission
     template_name = "profile.html"
-    permission_classes = [IsAuthenticatedOrOptions]
 
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         currencies = Currency.objects.all()
         return self.render_to_response({
             "user": request.user,
             "currencies": currencies,
-            "image_url": request.user.profile_image.url if request.user.profile_image else "",
+            "image_url": request.user.profile_image.url if request.user.is_authenticated and request.user.profile_image else "",
             "wallet": request.user.wallet if request.user.is_authenticated else None,
         })
 
 
 @authentication_classes([])
 @permission_classes([])
-class LoginView(APIView, TemplateResponseMixin):
+class LoginView(TemplateView):
     redirect_field_name = REDIRECT_FIELD_NAME
     template_name = "login.html"
 
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
 
         return self.render_to_response({})
 
@@ -129,8 +124,8 @@ class LoginView(APIView, TemplateResponseMixin):
         redirect_to = request.POST.get(
             self.redirect_field_name, request.GET.get(self.redirect_field_name, ""),
         )
-        username = request.data['username']
-        password = request.data['password']
+        username = request.POST['username']
+        password = request.POST['password']
         serializer = LoginSerializer(data={"username": username, "password": password})
         if serializer.is_valid():
             user = authenticate(
@@ -151,7 +146,7 @@ class LogoutView(APIView):
     redirect_field_name = REDIRECT_FIELD_NAME
     permission_classes = (IsAuthenticatedOrOptions,)
 
-    def get(self, request):
+    def get(self, request, *args, **kwargs):
         redirect_to = request.POST.get(
             self.redirect_field_name, request.GET.get(self.redirect_field_name, ""),
         )
@@ -170,7 +165,6 @@ class LogoutView(APIView):
 
 class CurrencyViewset(ExchangeModelViewSet):
     serializer_class = CurrencySerializer
-    permission_classes = [IsAuthenticatedOrOptions]
     queryset = Currency.objects.all()
     filter_class = filters.CurrencyFilter
     ordering_fields = ("id", "name")

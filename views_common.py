@@ -1,6 +1,11 @@
 from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
 from functools import wraps
+
+from django.views import View
+from django.views.generic.base import TemplateResponseMixin, TemplateView
+
 import models_common
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -106,6 +111,10 @@ def get_base_viewset(
     klass.dispatch = custom_dispatch
 
     return klass
+
+
+class BaseTemplateView(LoginRequiredMixin, TemplateView ):
+    pass
 
 
 ExchangeModelViewSet = get_base_viewset()
