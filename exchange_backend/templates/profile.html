@@ -8,9 +8,9 @@
 {% endblock %}
 
 {% block head %}
-<div class="btn-group" style="padding-top: 5%">
-<a href="{% url 'addmoney' %}"><button type="button" class="btn btn-primary btn-lg">Add money</button></a>
-<a href="{% url 'withdraw' %}"><button type="button" class="btn btn-secondary btn-lg">Withdraw money</button></a>
+<div class="btn-group center-block" style="padding-top: 5%">
+<a href="{% url 'addmoney' %}"><button type="button" class="btn btn-info  mr-4">Add money</button></a>
+<a href="{% url 'withdraw' %}"><button type="button" class="btn btn-info ">Withdraw money</button></a>
 {% endblock %}
 </div>
 
@@ -61,7 +61,7 @@
 </div>
 
 <div class="form-group">
-    <button type="submit" class="btn btn-outline-success btn-block" id="profile-submit"> Update Profile
+    <button type="submit" class="btn btn-success btn-block" id="profile-submit"> Update Profile
     </button>
 </div>
 {% endblock %}

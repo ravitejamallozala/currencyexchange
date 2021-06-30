@@ -18,17 +18,21 @@ $DOM.on('click', '#addmoney-submit', function () {
             "X-CSRFToken": $("#amount").data('csrf'),
             "content-type": "application/json"
         },
-        url: '/transaction/wallet_transaction/',
+        url: '/api/transaction/wallet_transaction/',
 
         success: function (result) {
-            console.log(result);
-            if (result.success) {
-                console.log("Add money Successed");
-            } else {
-                console.log("Add money  Failed");
+            if (result) {
                 alertify.set('notifier', 'position', 'top-right');
-                alertify.error(result.message);
+                alertify.success('Money Added to Wallet!!!');
+                setTimeout(function () {
+                    location.reload(true);
+                }, 1000);
+
+            } else {
+                alertify.set('notifier', 'position', 'top-right');
+                alertify.error('Failed to add Money!');
             }
+
         }
     });
 });

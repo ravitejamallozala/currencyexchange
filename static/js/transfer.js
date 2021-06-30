@@ -19,14 +19,15 @@ $DOM.on('click', '#transfer-submit', function () {
         url: '/api/transaction/transfer_money/',
 
         success: function (result) {
-            console.log(result);
-            if (result.success) {
-                console.log("Successed");
-            } else {
-
-                console.log("Failed");
+            if (result) {
                 alertify.set('notifier', 'position', 'top-right');
-                alertify.error(result.message);
+                alertify.success('Money Transfered!!!');
+                setTimeout(function () {
+                    location.reload(true);
+                }, 1000);
+            } else {
+                alertify.set('notifier', 'position', 'top-right');
+                alertify.error("Failed Money Trasnfered!!!");
             }
         }
     });

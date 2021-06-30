@@ -23,15 +23,16 @@ $DOM.on('click', '#profile-submit', function () {
         },
         success: function (result) {
             if (result) {
-                alertify.message('Profile Updated!!!');
                 alertify.set('notifier', 'position', 'top-right');
+                alertify.success('Profile Updated!!!');
                 setTimeout(function () {
                     location.reload(true);
                 }, 1000);
-                console.log("Profile Updation Successful");
+
             } else {
-                console.log("Profile Updation  Failed");
-                alertify.error(result.message);
+
+                alertify.set('notifier', 'position', 'top-right');
+                alertify.error('Failed to Update Profile!');
             }
         }
     });
