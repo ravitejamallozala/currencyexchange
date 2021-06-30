@@ -112,20 +112,19 @@ class ProfileView(BaseTemplateView):
 
 @authentication_classes([])
 @permission_classes([])
-class LoginView(TemplateView):
+class LoginView(APIView, TemplateResponseMixin):
     redirect_field_name = REDIRECT_FIELD_NAME
     template_name = "login.html"
 
     def get(self, request, *args, **kwargs):
-
         return self.render_to_response({})
 
     def post(self, request):
         redirect_to = request.POST.get(
-            self.redirect_field_name, request.GET.get(self.redirect_field_name, ""),
+            self.redirect_field_name, request.GET.get(self.redirect_field_name, "/"),
         )
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.data.get('username',None)
+        password = request.data.get('password',None)
         serializer = LoginSerializer(data={"username": username, "password": password})
         if serializer.is_valid():
             user = authenticate(

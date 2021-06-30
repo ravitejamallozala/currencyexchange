@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 
-<h1> login page</h2>
-
     {% block scripts %}
+    <script src="{% static 'js/login.js' %}"></script>
+
     {{ block.super }}
     {% endblock %}
 
@@ -14,8 +14,8 @@
             <article class="card-body mx-auto" style="max-width: 400px;">
                 <h4 class="card-title mt-3 text-center">Login</h4>
 
-                <form action="{% url 'login' %}" role="form" method="post">
-                  <input type="hidden" name="next" value="/" />
+<!--                <form action="{% url 'login' %}" role="form" method="post">-->
+<!--                  <input type="hidden" name="next" value="/" />-->
 
                     {% csrf_token %}
 
@@ -26,7 +26,7 @@
                             <input type="text" name="username" maxlength="100"
                                    autocapitalize="off"
                                    autocorrect="off" class="form-control textinput textInput"
-                                   id="id_username" required autofocus
+                                   data-csrf="{{ csrf_token }}" id="id_username" required autofocus
                                    {% if form.username.value %}value="{{ form.username.value }}" {% endif %}>
                             {% if form.username.errors %}
                             <p class="text-error">
@@ -54,7 +54,7 @@
                         <button type="submit" class="btn btn-outline-success btn-block" id="login_submit"> Login
                         </button>
                     </div> <!-- form-group// -->
-                </form>
+<!--                </form>-->
 
 
             </article>
