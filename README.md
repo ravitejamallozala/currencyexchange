@@ -6,16 +6,22 @@ user can also change his Currency type.
 
 Basically the amount in the Wallet supports all the international currency types. So one can add/withdraw/transfer money in any currency value.
 
-Web Application Features:
+### Web Application Features:
 1. Registration and login into the Application 
 2. User can store the currency in any currency type.
 3. User can change his/her wallet default currency type.
 4. User can **Add money** to his/her wallet. Any currency type value can be added to Wallet.
 5. User can **Withdraw money** from his/her wallet. Any currency type value can be Withdrawn from the wallet.
-6. User can Tranfer
+6. User can **Transfer money** to other users in any type of currency.
+7. User can change his/her Profile picture.
 
-Currency Exchange Deployment Process:
+###Project details:
+Web application is developed using Python Django rest framework, sqlite3, Jquery, bootstrap, CSS, HTML.
 
+Deployed using Docker, Docker-compose, Nginx, uwsgi, supervisord, AWS Ec2.
+We can use redis for caching conversion data (which is fetched daily)  
+
+###Currency Exchange Deployment Process:
 The Application is deployed on AWS Ec2 machine.
 	- Ubuntu Ec2 Instance - t2.micro
 	- installed docker.io & docker-compose using user-data script.
@@ -74,9 +80,17 @@ Ansible Example:
       volumes:
          - /data/currency_exchange/media:/opt/app/media 
 ````
-Improvements in Deployment Process:
+###Improvements in Deployment Process:
 
 - In Ideal case we use CICD  tool such as Jenkins to trigger job whenever new code is merged (as we can integrate with github)
 - We build the docker in Jenkins server where new code is pulled and building docker is done.
 - New docker image can be pushed to docker registry from where ansible can access and deploy the container in list of servers. We can use Docker swarm to orchestration.
 - While deploying we should have Volumes setup for container & NFS can be mounted to server, so that the media files can be saved in NFS (or we can save files directly in S3).
+- As we are using sqlite3 and volumes are not set to dockers the db is cleared on every deployment. In normal case we connect to database  which is outside the application docker. 
+
+### Improvements in Development
+- As the Conversion API data needs to be updated only once a day we can store the data against
+- Unit test cases and Integration Test cases must be written.
+- Better UI can be designed.
+- Proper testing and Exception Handling can be better. 
+
