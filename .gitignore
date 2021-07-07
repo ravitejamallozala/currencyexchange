@@ -13,4 +13,4 @@ cscope*
 *.sublime-workspace
 deployment_static/*
 media/
-
+htmlcov
