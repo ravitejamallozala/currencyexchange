@@ -17,7 +17,7 @@ class Currency(ExchangeBaseModel):
 
 class Wallet(ExchangeBaseModel):
     current_balance = models.FloatField(default=0.0)
-    currency_type = models.ForeignKey(Currency,on_delete=models.PROTECT)
+    currency_type = models.ForeignKey(Currency, on_delete=models.PROTECT)
 
 
 class User(auth_models.AbstractUser, ExchangeBaseModel):
@@ -37,6 +37,7 @@ class User(auth_models.AbstractUser, ExchangeBaseModel):
         if not instance.default_currency:
             currency_obj = Currency.objects.get_or_create(name="INR")[0] # Assuming INR to be default currency of user
             instance.default_currency = currency_obj
+            print("In create default")
         else:
             currency_obj = instance.default_currency
         wser = WalletSerializer(
@@ -52,7 +53,6 @@ class User(auth_models.AbstractUser, ExchangeBaseModel):
 
     @classmethod
     def post_save(cls, sender, instance, created, *args, **kwargs):
-        print("Here in User postsave")
         if created:
             transaction.on_commit(lambda: cls.create_default_values(instance))
         else:
