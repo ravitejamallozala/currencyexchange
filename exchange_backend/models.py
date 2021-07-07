@@ -17,12 +17,12 @@ class Currency(ExchangeBaseModel):
 
 class Wallet(ExchangeBaseModel):
     current_balance = models.FloatField(default=0.0)
-    currency_type = models.ForeignKey(Currency)
+    currency_type = models.ForeignKey(Currency,on_delete=models.PROTECT)
 
 
 class User(auth_models.AbstractUser, ExchangeBaseModel):
-    wallet = models.OneToOneField(Wallet, related_name="user_wallet", blank=True, null=True)
-    default_currency = models.ForeignKey(Currency, blank=True, null=True)
+    wallet = models.OneToOneField(Wallet, related_name="user_wallet", blank=True, null=True, on_delete=models.PROTECT)
+    default_currency = models.ForeignKey(Currency, blank=True, null=True, on_delete=models.PROTECT)
     profile_image = models.FileField(
         upload_to="profile_images/",
         validators=[FileExtensionValidator(allowed_extensions=["jpeg", 'jpg', 'png'])], blank=True, null=True
@@ -78,14 +78,14 @@ class Transaction(ExchangeBaseModel):
     TRANSACTION_TYPE_CHOICES = Choices(("debit", "debit"), ("credit", "credit"), ("transfer", "transfer"))
     STATUS_CHOICES = Choices(("accepted", "accepted"), ("declined", "declined"))
 
-    user = models.ForeignKey(User, related_name="transaction")
+    user = models.ForeignKey(User, related_name="transaction", on_delete=models.CASCADE)
     dest_user_id = models.IntegerField(blank=True, null=True)
     transaction_type = models.CharField(
         max_length=NAME_LENGTH, choices=TRANSACTION_TYPE_CHOICES,
     )
     amount = models.FloatField()
     timestamp = models.DateTimeField(default=django.utils.timezone.now)  # noqa
-    currency_type = models.ForeignKey(Currency)
+    currency_type = models.ForeignKey(Currency, on_delete=models.PROTECT)
     remaining_balance = models.FloatField(blank=True, null=True)
     status = models.CharField(
         max_length=NAME_LENGTH, choices=STATUS_CHOICES, blank=True, null=True,
