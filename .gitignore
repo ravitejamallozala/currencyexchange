@@ -14,3 +14,5 @@ cscope*
 deployment_static/*
 media/
 htmlcov
+.coverage
+
