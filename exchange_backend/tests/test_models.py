@@ -1,6 +1,7 @@
 import pytest
 from mixer.backend.django import mixer
 from django.core.exceptions import ValidationError
+from exchange_backend.models import User
 
 pytestmark = pytest.mark.django_db
 
@@ -76,15 +77,26 @@ class TestUser:
             assert True
 
     def test_create_default_values(self):
-        from exchange_backend.models import User
         user_obj = mixer.blend('exchange_backend.User', wallet=None, default_currency=None)
         User.create_default_values(user_obj)
         assert user_obj.default_currency.name == "INR"
         User.create_default_values(user_obj)
         assert user_obj.default_currency.name == "INR"
 
+    def test_user_postsave(self):
+        curr_obj = mixer.blend('exchange_backend.Currency', name="INR")
+        wallet_obj = mixer.blend('exchange_backend.Wallet')
+
+        user_obj = User.objects.create(username="test", password="test@123", default_currency=curr_obj,
+                                       wallet=wallet_obj)
+        user_obj.username = "test2"
+        user_obj.save()
+        user_obj = User.objects.first()
+        curr_obj = mixer.blend('exchange_backend.Currency', name="USD")
+        user_obj.default_currency = curr_obj
+        user_obj.save()
+
     def test_update_currency(self):
-        from exchange_backend.models import User
         wallet_obj = mixer.blend('exchange_backend.Wallet')
         curr_obj = mixer.blend('exchange_backend.Currency')
         user_obj = User.objects.create(username="test", password="test@123", wallet=wallet_obj)
@@ -102,7 +114,8 @@ class TestTransaction:
     def test_create_data(self):
         curr_obj = mixer.blend('exchange_backend.Currency')
         user_obj = mixer.blend('exchange_backend.User')
-        trans_obj = mixer.blend('exchange_backend.Transaction', transaction_type="debit",currency_type=curr_obj, user=user_obj)
+        trans_obj = mixer.blend('exchange_backend.Transaction', transaction_type="debit", currency_type=curr_obj,
+                                user=user_obj)
         assert trans_obj.transaction_type == "debit", 'Checking the added record in DB has given value in name column'
         assert trans_obj.user.id == user_obj.pk, 'Checking the added record in DB has given foreign key relation'
 
@@ -113,4 +126,3 @@ class TestTransaction:
             assert True, 'Checking the added record in DB has given value in user'
         else:
             assert False
-
