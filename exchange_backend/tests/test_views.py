@@ -3,11 +3,12 @@ import json
 import pytest
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
-from django.test import RequestFactory, TestCase
+from django.test import RequestFactory
 from exchange_backend import views
 from mixer.backend.django import mixer
 from rest_framework.request import Request
 from exchange_backend.views import WithdrawmoneyView, ProfileView, User
+from utils import get_restframework_request
 
 pytestmark = pytest.mark.django_db
 
@@ -34,25 +35,6 @@ class TestRegisterPage:
         assert resp.status_code == 302, "As after registration it will redirect to Home page"
         assert '' in resp.url
         assert User.objects.filter(username="test").first() is not None, "As user is Sucessfully created"
-
-
-class AnimalTestCase(TestCase):
-    def setUp(self):
-        pass
-
-    def test_animals_can_speak(self):
-        """Animals that can speak are correctly identified"""
-        self.assertEqual(True, True)
-
-
-def get_restframework_request(url, body):
-    req = RequestFactory(content_type="application/json")
-    req = req.post(url, content_type="application/json", data=body)
-    req = Request(req)
-    req.session = {}
-    session_obj = SessionMiddleware()
-    session_obj.process_request(req)
-    return req
 
 
 class TestLoginPage:
@@ -94,9 +76,15 @@ class TestLoginPage:
         req = get_restframework_request("login/", body)
         resp = views.LoginView.as_view()(req)
         assert resp.status_code == 401, "unauthorized Status code"
-
-    def test_register_loginpass(self):
-        pass
+        body = {
+            "username": "test",
+            "password": "test@123",
+        }
+        body = json.dumps(body)
+        req = get_restframework_request("login/", body)
+        resp = views.LoginView.as_view()(req)
+        assert resp.status_code == 302, "Redirect Status code"
+        assert resp.url == '/', "As after Successful Login it will redirect to Home page"
 
 
 # class TestLogoutView:

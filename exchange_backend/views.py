@@ -36,7 +36,6 @@ class RegisterView(CreateAPIView, TemplateResponseMixin):
 
         self.create(request, *args, **kwargs)
         final_response = HttpResponseRedirect(redirect_to)
-        print(final_response)
         return final_response
 
 

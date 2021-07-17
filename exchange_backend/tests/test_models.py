@@ -108,12 +108,18 @@ class TestUser:
 
 class TestTransaction:
     def test_create(self):
-        obj = mixer.blend('exchange_backend.Transaction')
+        curr_obj = mixer.blend('exchange_backend.Currency', name="INR")
+        wallet_obj = mixer.blend('exchange_backend.Wallet')
+
+        user_obj = User.objects.create(username="test", password="test@123", default_currency=curr_obj,
+                                       wallet=wallet_obj)
+        obj = mixer.blend('exchange_backend.Transaction', user=user_obj, currency_type=curr_obj)
         assert obj.pk == 1, 'Checking the added record in DB'
 
     def test_create_data(self):
         curr_obj = mixer.blend('exchange_backend.Currency')
-        user_obj = mixer.blend('exchange_backend.User')
+        wallet_obj = mixer.blend('exchange_backend.Wallet')
+        user_obj = mixer.blend('exchange_backend.User', wallet=wallet_obj)
         trans_obj = mixer.blend('exchange_backend.Transaction', transaction_type="debit", currency_type=curr_obj,
                                 user=user_obj)
         assert trans_obj.transaction_type == "debit", 'Checking the added record in DB has given value in name column'

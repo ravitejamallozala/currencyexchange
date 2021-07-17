@@ -37,7 +37,6 @@ class User(auth_models.AbstractUser, ExchangeBaseModel):
         if not instance.default_currency:
             currency_obj = Currency.objects.get_or_create(name="INR")[0] # Assuming INR to be default currency of user
             instance.default_currency = currency_obj
-            print("In create default")
         else:
             currency_obj = instance.default_currency
         wser = WalletSerializer(
@@ -58,7 +57,6 @@ class User(auth_models.AbstractUser, ExchangeBaseModel):
         else:
             from exchange_backend.views import ExchangeService
             old_instance = instance.old_instance
-            print(old_instance)
             if not old_instance:
                 return
             if old_instance.default_currency != instance.default_currency:
@@ -103,4 +101,4 @@ class Transaction(ExchangeBaseModel):
             instance.save()
 
 
-models.signals.post_save.connect(User.post_save, sender=User)
+models.signals.post_save.connect(Transaction.post_save, sender=Transaction)
