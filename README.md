@@ -107,3 +107,35 @@ the most optimised way.
 => We can use Redis to cache the frequently accessed data.
 
 => If we are hosting in AWS we can use Autoscaling to increase the resources, as we are using dockers adding new resources will be seamless.
+
+### Unit Test Suite
+Used Django Native TestCase module for writing unittest cases in the project.  
+
+Steps:
+In the project directory run the following command for running unittest cases   
+```
+coverage run --source='.' manage.py test --pattern=djangotest*
+```
+We can also see the coverage of unit tests by using this command
+
+Also used pytest library for writing unittest case
+```
+coverage report -m
+coverage html
+```
+Here is the Coverage report:
+
+
+![Coverage report](https://user-images.githubusercontent.com/22166296/126077128-410b7cc2-e678-4962-b5fe-71ac49046c44.png)
+
+
+Pytest unittests:
+- Run pytest unittest- In the Project directory
+```
+py.test
+```
+- To view Unit test coverage
+```
+coverage report -m
+coverage html
+```
