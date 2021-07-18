@@ -148,3 +148,5 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, "media")
 SESSION_COOKIE_NAME = "sessionid"
 EXCHANGE_API = {}
 from local_settings import *  # noqa
+
+UNITTEST_HTTP_HOST = "127.0.0.1"

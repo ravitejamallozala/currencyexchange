@@ -11,4 +11,5 @@ omit =
     *_common.py,
     auth.py,
     misc.py
-
+    *site-packages/*
+   

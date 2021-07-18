@@ -87,15 +87,14 @@ class TestLoginPage:
         assert resp.url == '/', "As after Successful Login it will redirect to Home page"
 
 
-# class TestLogoutView:
-#     def test_logoutuser(self):
-#         user = mixer.blend('exchange_backend.user')
-#         req = RequestFactory(content_type="application/json")
-#         req.user = user
-#         req = req.post('logout/', content_type="application/json", data={})
-#         resp = views.LogoutView.as_view()(req)
-#         assert resp.status_code == 302, "As after Logout it will redirect to Home page"
-#         assert '' in resp.url
+class TestLogoutView:
+    def test_logoutuser(self):
+        user = mixer.blend('exchange_backend.user')
+        req = get_restframework_request("logout/", {})
+        req.user = user
+        resp = views.LogoutView.as_view()(req)
+        assert resp.status_code == 302, "As after Logout it will redirect to Home page"
+        assert '' in resp.url
 
 
 class TestHomePage:
