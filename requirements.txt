@@ -10,3 +10,4 @@ django-easy-select2==1.5.5
 requests==2.23.0
 django-filter==1.0.4
 djangorestframework-filters==0.10.0
+mixer==7.0.6

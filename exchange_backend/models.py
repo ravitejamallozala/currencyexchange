@@ -17,7 +17,7 @@ class Currency(ExchangeBaseModel):
 
 class Wallet(ExchangeBaseModel):
     current_balance = models.FloatField(default=0.0)
-    currency_type = models.ForeignKey(Currency,on_delete=models.PROTECT)
+    currency_type = models.ForeignKey(Currency, on_delete=models.PROTECT)
 
 
 class User(auth_models.AbstractUser, ExchangeBaseModel):
@@ -52,13 +52,11 @@ class User(auth_models.AbstractUser, ExchangeBaseModel):
 
     @classmethod
     def post_save(cls, sender, instance, created, *args, **kwargs):
-        print("Here in User postsave")
         if created:
             transaction.on_commit(lambda: cls.create_default_values(instance))
         else:
             from exchange_backend.views import ExchangeService
             old_instance = instance.old_instance
-            print(old_instance)
             if not old_instance:
                 return
             if old_instance.default_currency != instance.default_currency:
@@ -103,4 +101,4 @@ class Transaction(ExchangeBaseModel):
             instance.save()
 
 
-models.signals.post_save.connect(User.post_save, sender=User)
+models.signals.post_save.connect(Transaction.post_save, sender=Transaction)

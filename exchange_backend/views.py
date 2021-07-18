@@ -36,7 +36,6 @@ class RegisterView(CreateAPIView, TemplateResponseMixin):
 
         self.create(request, *args, **kwargs)
         final_response = HttpResponseRedirect(redirect_to)
-        print(final_response)
         return final_response
 
 
@@ -123,8 +122,8 @@ class LoginView(APIView, TemplateResponseMixin):
         redirect_to = request.POST.get(
             self.redirect_field_name, request.GET.get(self.redirect_field_name, "/"),
         )
-        username = request.data.get('username',None)
-        password = request.data.get('password',None)
+        username = request.data.get('username', None)
+        password = request.data.get('password', None)
         serializer = LoginSerializer(data={"username": username, "password": password})
         if serializer.is_valid():
             user = authenticate(
@@ -153,14 +152,6 @@ class LogoutView(APIView):
         logout(request)
         return final_response
 
-    def post(self, request):
-        redirect_to = request.POST.get(
-            self.redirect_field_name, request.GET.get(self.redirect_field_name, ""),
-        )
-        final_response = HttpResponseRedirect(redirect_to)
-        logout(request)
-        return final_response
-
 
 class CurrencyViewset(ExchangeModelViewSet):
     serializer_class = CurrencySerializer
@@ -186,7 +177,7 @@ class ExchangeService:
             "apiKey": {settings.EXCHANGE_API['API_TOKEN']}
         }
         req_obj = requests.get(url=url, params=params)
-        currencies_list = []
+        currencies_list = None
         if req_obj.status_code == 200:
             data = req_obj.json()
             currencies_list = list(data['results'].keys()) if 'results' in data else []
@@ -309,7 +300,7 @@ class WalletViewset(ExchangeModelViewSet):
             "description": None,
         })
         tser.is_valid(raise_exception=True)
-        # tser.save()
+        tser.save()
         with transaction.atomic():
             WalletViewset.withdraw_money(from_user, from_user.default_currency, amount, True)
             WalletViewset.add_money(to_user, from_user.default_currency, amount, True)
