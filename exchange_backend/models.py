@@ -16,7 +16,7 @@ class Currency(ExchangeBaseModel):
 
 
 class Wallet(ExchangeBaseModel):
-    current_balance = models.FloatField(default=0.0)
+    current_balance = models.DecimalField(default=0.0, decimal_places=2, max_digits=10)
     currency_type = models.ForeignKey(Currency, on_delete=models.PROTECT)
 
 

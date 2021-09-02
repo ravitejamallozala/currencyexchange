@@ -33,4 +33,5 @@ class Migration(migrations.Migration):
             name='currency_type',
             field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='exchange_backend.Currency'),
         ),
+
     ]
